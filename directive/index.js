@@ -13,7 +13,8 @@ util.inherits(Generator, ScriptBase);
 
 Generator.prototype.askFor = function askFor() {
   var done = this.async();
-  this.dir = path.join(this.config.get('directiveDirectory'), this.name);
+  var dir = this.config.get('directiveDirectory') || '';
+  this.dir = path.join(dir, this.name);
   var prompts = [
     {
       type:'confirm',
@@ -37,6 +38,7 @@ Generator.prototype.createFiles = function createFiles() {
     templateDir = path.join(this.sourceRoot(), 'directiveComplex');
   }
 
-  this.htmlPath = this.dir + this.name + '.html';
+  var basePath = this.config.get('basePath') || '';
+  this.htmlUrl = ngUtil.relativeUrl(basePath, path.join(this.dir, this.name + '.html'));
   ngUtil.copyTemplates(this, 'directive', templateDir, configName);
 };

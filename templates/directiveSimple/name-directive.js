@@ -3,7 +3,7 @@
 angular.module('<%= scriptAppName %>')
   .directive('<%= cameledName %>', function () {
     return {
-      templateUrl: '<%= htmlPath %>',
+      template: '<div></div>',
       restrict: 'E',
       link: function (scope, element, attrs) {
         element.text('this is the <%= cameledName %> directive');
