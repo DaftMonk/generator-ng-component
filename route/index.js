@@ -12,25 +12,27 @@ var Generator = module.exports = function Generator() {
 util.inherits(Generator, ScriptBase);
 
 Generator.prototype.askFor = function askFor() {
-  this.dir = path.join(this.config.get('routeDirectory'), this.name);
+  var name = this.name;
+  var dir = this.config.get('routeDirectory') || '';
+  this.dir = path.join(dir, name);
 
-  if(this.config.get('injectRoute')) {
-    var done = this.async();
-    var prompts = [
-      {
-        name: 'route',
-        message: 'Enter your route url (i.e. /myview/:id).  Leave this empty if you don\'t want a route added for you.'
-      }
-    ];
+  var done = this.async();
+  var prompts = [
+    {
+      name: 'route',
+      message: 'Enter your route url',
+      default: '/' + name
+    }
+  ];
 
-    this.prompt(prompts, function (props) {
-      this.route = props.route;
-
-      done();
-    }.bind(this));
-  }
+  this.prompt(prompts, function (props) {
+    this.route = props.route;
+    done();
+  }.bind(this));
 };
 
 Generator.prototype.createFiles = function createFiles() {
+  var basePath = this.config.get('basePath') || '';
+  this.htmlUrl = ngUtil.relativeUrl(basePath, path.join(this.dir, this.name + '.html'));
   ngUtil.copyTemplates(this, 'route');
 };

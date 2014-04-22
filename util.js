@@ -6,7 +6,8 @@ module.exports = {
   rewrite: rewrite,
   rewriteFile: rewriteFile,
   appName: appName,
-  copyTemplates : copyTemplates
+  copyTemplates: copyTemplates,
+  relativeUrl: relativeUrl
 };
 
 function rewriteFile (args) {
@@ -73,18 +74,56 @@ function appName (self) {
   return suffix ? self._.classify(suffix) : '';
 }
 
+function createFileName (template, name) {
+  // Find matches for parans
+  var filterMatches = template.match(/\(([^)]+)\)/g);
+  var filter = '';
+  if(filterMatches) {
+    filter = filterMatches[0].replace('(', '').replace(')', '');
+    template = template.replace(filterMatches[0], '');
+  }
+
+  return { name: template.replace('name', name), filter: filter };
+}
+
+function templateIsUsable (processedName, self) {
+  var filters = self.config.get('filters') || [];
+  var include = true;
+
+  if(processedName.filter && filters.indexOf(processedName.filter) === -1) {
+    include = false;
+  }
+
+  var index = processedName.name.indexOf('.');
+  var ext = processedName.name.slice(index);
+  var extensions = self.config.get('extensions') || [];
+  if(extensions.indexOf(ext) >= 0 && include) {
+    return true;
+  }
+  return false;
+}
+
 function copyTemplates (self, type, templateDir, configName) {
   templateDir = templateDir || path.join(self.sourceRoot(), type);
   configName = configName || type + 'Templates';
 
-  if(self.config.get(configName)){
+  if(self.config.get(configName)) {
     templateDir = path.join(process.cwd(), self.config.get(configName));
   }
   fs.readdirSync(templateDir)
     .forEach(function(template) {
-      var fileName = template.replace('name', self.name);
+      var processedName = createFileName(template, self.name);
+
+      var fileName = processedName.name;
       var templateFile = path.join(templateDir, template);
 
-      self.template(templateFile, path.join(self.dir, fileName));
+      if(templateIsUsable(processedName, self)) {
+        self.template(templateFile, path.join(self.dir, fileName));
+      }
     });
 };
+
+function relativeUrl(basePath, targetPath) {
+  var relativePath = path.relative(basePath, targetPath);
+  return relativePath.split(path.sep).join('/');
+}

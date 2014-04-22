@@ -13,8 +13,12 @@ var NgComponentGenerator = yeoman.generators.Base.extend({
       this.config.set('directiveDirectory', 'app/components/');
       this.config.set('filterDirectory', 'app/components/');
       this.config.set('serviceDirectory', 'app/components/');
+      this.config.set('basePath', 'app');
       this.config.set('app', 'app/app.js');
-      this.config.set('injectRoute', true);
+
+      this.config.set('filters', ['uiRoute']);
+      this.config.set('extensions', ['.js', '.html', '.scss']);
+      this.config.set('app', 'app/app.js');
       this.config.save();
     });
   },

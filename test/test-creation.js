@@ -37,12 +37,13 @@ describe('ng-component generator', function () {
 
   describe('Route', function () {
     it('should generate a new route', function (done) {
-      generatorTest('route', 'foo', {}, function() {
+      generatorTest('route', 'foo', { route: '/foo'}, function() {
         helpers.assertFile([
           path.join('app/components/foo', 'foo.html'),
           path.join('app/components/foo', 'foo.scss'),
           path.join('app/components/foo', 'foo-controller.js'),
-          path.join('app/components/foo', 'foo-controller_spec.js')
+          path.join('app/components/foo', 'foo-controller_spec.js'),
+          path.join('app/components/foo', 'foo.js')
         ]);
         done();
       });
