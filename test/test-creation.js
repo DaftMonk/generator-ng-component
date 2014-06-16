@@ -133,11 +133,11 @@ describe('ng-component generator', function () {
       it('should generate a new route', function (done) {
         generatorTest('route', 'foo', { dir: 'client/app/', route: '/foo'}, function() {
           helpers.assertFile([
-            path.join('client/app/foo', 'foo.html'),
-            path.join('client/app/foo', 'foo.scss'),
-            path.join('client/app/foo', 'foo.controller.js'),
-            path.join('client/app/foo', 'foo.controller.spec.js'),
-            path.join('client/app/foo', 'foo.js')
+            path.join('client/app/foo', 'foo.jade'),
+            path.join('client/app/foo', 'foo.less'),
+            path.join('client/app/foo', 'foo.controller.coffee'),
+            path.join('client/app/foo', 'foo.controller.spec.coffee'),
+            path.join('client/app/foo', 'foo.coffee')
           ]);
           done();
         });
@@ -148,10 +148,10 @@ describe('ng-component generator', function () {
       it('should generate a new complex directive', function (done) {
         generatorTest('directive', 'foo', { dir: 'client/app/', complex: true }, function() {
           helpers.assertFile([
-            path.join('client/app/foo', 'foo.html'),
-            path.join('client/app/foo', 'foo.scss'),
-            path.join('client/app/foo', 'foo.directive.js'),
-            path.join('client/app/foo', 'foo.directive.js')
+            path.join('client/app/foo', 'foo.jade'),
+            path.join('client/app/foo', 'foo.less'),
+            path.join('client/app/foo', 'foo.directive.coffee'),
+            path.join('client/app/foo', 'foo.directive.coffee')
           ]);
           done();
         });
@@ -160,12 +160,12 @@ describe('ng-component generator', function () {
       it('should generate a new simple directive', function (done) {
         generatorTest('directive', 'foo', { dir: 'client/app/', complex: false }, function() {
           helpers.assertFile([
-            path.join('client/app/foo', 'foo.directive.js'),
-            path.join('client/app/foo', 'foo.directive.spec.js')
+            path.join('client/app/foo', 'foo.directive.coffee'),
+            path.join('client/app/foo', 'foo.directive.spec.coffee')
           ]);
           helpers.assertNoFile([
-            path.join('client/app/foo', 'foo.scss'),
-            path.join('client/app/foo', 'foo.html')
+            path.join('client/app/foo', 'foo.less'),
+            path.join('client/app/foo', 'foo.jade')
           ]);
           done();
         });
@@ -176,8 +176,8 @@ describe('ng-component generator', function () {
       it('should generate a new service', function (done) {
         generatorTest('service', 'foo', { dir: 'client/app/' }, function() {
           helpers.assertFile([
-            path.join('client/app/foo', 'foo.service.js'),
-            path.join('client/app/foo', 'foo.service.spec.js')
+            path.join('client/app/foo', 'foo.service.coffee'),
+            path.join('client/app/foo', 'foo.service.spec.coffee')
           ]);
           done();
         });
@@ -188,8 +188,8 @@ describe('ng-component generator', function () {
       it('should generate a new factory', function (done) {
         generatorTest('factory', 'foo', { dir: 'client/app/' }, function() {
           helpers.assertFile([
-            path.join('client/app/foo', 'foo.service.js'),
-            path.join('client/app/foo', 'foo.service.spec.js')
+            path.join('client/app/foo', 'foo.service.coffee'),
+            path.join('client/app/foo', 'foo.service.spec.coffee')
           ]);
           done();
         });
@@ -200,8 +200,8 @@ describe('ng-component generator', function () {
       it('should generate a new filter', function (done) {
         generatorTest('filter', 'foo', { dir: 'client/app/' }, function() {
           helpers.assertFile([
-            path.join('client/app/foo', 'foo.filter.js'),
-            path.join('client/app/foo', 'foo.filter.spec.js')
+            path.join('client/app/foo', 'foo.filter.coffee'),
+            path.join('client/app/foo', 'foo.filter.spec.coffee')
           ]);
           done();
         });

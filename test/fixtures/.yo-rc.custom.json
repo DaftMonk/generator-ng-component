@@ -5,12 +5,12 @@
     "filterDirectory": "client/app/",
     "serviceDirectory": "client/app/",
     "filters": [
-      "uirouter"
+      "ngroute"
     ],
     "extensions": [
-      ".js",
-      ".html",
-      ".scss"
+      ".coffee",
+      ".jade",
+      ".less"
     ],
     "basePath": "app"
   }
