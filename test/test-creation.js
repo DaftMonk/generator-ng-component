@@ -36,7 +36,7 @@ describe('ng-component generator', function () {
 
     describe('Route', function () {
       it('should generate a new route', function (done) {
-        generatorTest('route', 'foo', { route: '/foo'}, function() {
+        generatorTest('route', 'foo', { dir: 'app/components/', route: '/foo'}, function() {
           helpers.assertFile([
             path.join('app/components/foo', 'foo.html'),
             path.join('app/components/foo', 'foo.scss'),
@@ -51,7 +51,7 @@ describe('ng-component generator', function () {
 
     describe('Directive', function () {
       it('should generate a new complex directive', function (done) {
-        generatorTest('directive', 'foo', { complex: true }, function() {
+        generatorTest('directive', 'foo', { dir: 'app/components/', complex: true }, function() {
           helpers.assertFile([
             path.join('app/components/foo', 'foo.html'),
             path.join('app/components/foo', 'foo.scss'),
@@ -63,7 +63,7 @@ describe('ng-component generator', function () {
       });
 
       it('should generate a new simple directive', function (done) {
-        generatorTest('directive', 'foo', { complex: false }, function() {
+        generatorTest('directive', 'foo', { dir: 'app/components/', complex: false }, function() {
           helpers.assertFile([
             path.join('app/components/foo', 'foo.directive.js'),
             path.join('app/components/foo', 'foo.directive.spec.js')
@@ -79,7 +79,7 @@ describe('ng-component generator', function () {
 
     describe('Service', function () {
       it('should generate a new service', function (done) {
-        generatorTest('service', 'foo', {}, function() {
+        generatorTest('service', 'foo', { dir: 'app/components/' }, function() {
           helpers.assertFile([
             path.join('app/components/foo', 'foo.service.js'),
             path.join('app/components/foo', 'foo.service.spec.js')
@@ -91,7 +91,7 @@ describe('ng-component generator', function () {
 
     describe('Factory', function () {
       it('should generate a new factory', function (done) {
-        generatorTest('factory', 'foo', {}, function() {
+        generatorTest('factory', 'foo', { dir: 'app/components/' }, function() {
           helpers.assertFile([
             path.join('app/components/foo', 'foo.service.js'),
             path.join('app/components/foo', 'foo.service.spec.js')
@@ -103,7 +103,7 @@ describe('ng-component generator', function () {
 
     describe('Filter', function () {
       it('should generate a new filter', function (done) {
-        generatorTest('filter', 'foo', {}, function() {
+        generatorTest('filter', 'foo', { dir: 'app/components/' }, function() {
           helpers.assertFile([
             path.join('app/components/foo', 'foo.filter.js'),
             path.join('app/components/foo', 'foo.filter.spec.js')
@@ -131,7 +131,7 @@ describe('ng-component generator', function () {
 
     describe('Route', function () {
       it('should generate a new route', function (done) {
-        generatorTest('route', 'foo', { route: '/foo'}, function() {
+        generatorTest('route', 'foo', { dir: 'client/app/', route: '/foo'}, function() {
           helpers.assertFile([
             path.join('client/app/foo', 'foo.html'),
             path.join('client/app/foo', 'foo.scss'),
@@ -146,7 +146,7 @@ describe('ng-component generator', function () {
 
     describe('Directive', function () {
       it('should generate a new complex directive', function (done) {
-        generatorTest('directive', 'foo', { complex: true }, function() {
+        generatorTest('directive', 'foo', { dir: 'client/app/', complex: true }, function() {
           helpers.assertFile([
             path.join('client/app/foo', 'foo.html'),
             path.join('client/app/foo', 'foo.scss'),
@@ -158,7 +158,7 @@ describe('ng-component generator', function () {
       });
 
       it('should generate a new simple directive', function (done) {
-        generatorTest('directive', 'foo', { complex: false }, function() {
+        generatorTest('directive', 'foo', { dir: 'client/app/', complex: false }, function() {
           helpers.assertFile([
             path.join('client/app/foo', 'foo.directive.js'),
             path.join('client/app/foo', 'foo.directive.spec.js')
@@ -174,7 +174,7 @@ describe('ng-component generator', function () {
 
     describe('Service', function () {
       it('should generate a new service', function (done) {
-        generatorTest('service', 'foo', {}, function() {
+        generatorTest('service', 'foo', { dir: 'client/app/' }, function() {
           helpers.assertFile([
             path.join('client/app/foo', 'foo.service.js'),
             path.join('client/app/foo', 'foo.service.spec.js')
@@ -186,7 +186,7 @@ describe('ng-component generator', function () {
 
     describe('Factory', function () {
       it('should generate a new factory', function (done) {
-        generatorTest('factory', 'foo', {}, function() {
+        generatorTest('factory', 'foo', { dir: 'client/app/' }, function() {
           helpers.assertFile([
             path.join('client/app/foo', 'foo.service.js'),
             path.join('client/app/foo', 'foo.service.spec.js')
@@ -198,7 +198,7 @@ describe('ng-component generator', function () {
 
     describe('Filter', function () {
       it('should generate a new filter', function (done) {
-        generatorTest('filter', 'foo', {}, function() {
+        generatorTest('filter', 'foo', { dir: 'client/app/' }, function() {
           helpers.assertFile([
             path.join('client/app/foo', 'foo.filter.js'),
             path.join('client/app/foo', 'foo.filter.spec.js')

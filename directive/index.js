@@ -12,10 +12,15 @@ var Generator = module.exports = function Generator() {
 util.inherits(Generator, ScriptBase);
 
 Generator.prototype.askFor = function askFor() {
+  var self = this;
   var done = this.async();
-  var dir = this.config.get('directiveDirectory') || '';
-  this.dir = path.join(dir, this.name);
+
   var prompts = [
+    {
+      name: 'dir',
+      message: 'Where would you like to create this factory?',
+      default: self.config.get('directiveDirectory')
+    },
     {
       type:'confirm',
       name: 'complex',
@@ -25,6 +30,7 @@ Generator.prototype.askFor = function askFor() {
   ];
 
   this.prompt(prompts, function (props) {
+    this.dir = path.join(props.dir, this.name);
     this.complex = props.complex;
     done();
   }.bind(this));

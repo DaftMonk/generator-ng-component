@@ -12,21 +12,26 @@ var Generator = module.exports = function Generator() {
 util.inherits(Generator, ScriptBase);
 
 Generator.prototype.askFor = function askFor() {
+  var self = this;
   var name = this.name;
-  var dir = this.config.get('routeDirectory') || '';
-  this.dir = path.join(dir, name);
 
   var done = this.async();
   var prompts = [
     {
+      name: 'dir',
+      message: 'Where would you like to create this route?',
+      default: self.config.get('routeDirectory')
+    },
+    {
       name: 'route',
-      message: 'Enter your route url',
+      message: 'What will the url of your route be?',
       default: '/' + name
     }
   ];
 
   this.prompt(prompts, function (props) {
     this.route = props.route;
+    this.dir = path.join(props.dir, this.name);
     done();
   }.bind(this));
 };

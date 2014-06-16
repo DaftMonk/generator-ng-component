@@ -12,8 +12,20 @@ var Generator = module.exports = function Generator() {
 util.inherits(Generator, ScriptBase);
 
 Generator.prototype.askFor = function askFor() {
-  var dir = this.config.get('filterDirectory') || '';
-  this.dir = path.join(dir, this.name);
+  var self = this;
+  var done = this.async();
+  var prompts = [
+    {
+      name: 'dir',
+      message: 'Where would you like to create this filter?',
+      default: self.config.get('filterDirectory')
+    }
+  ];
+
+  this.prompt(prompts, function (props) {
+    this.dir = path.join(props.dir, this.name);
+    done();
+  }.bind(this));
 };
 
 Generator.prototype.createFiles = function createFiles() {
