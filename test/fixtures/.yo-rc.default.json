@@ -8,9 +8,9 @@
       "uirouter"
     ],
     "extensions": [
-      ".js",
-      ".html",
-      ".scss"
+      "js",
+      "html",
+      "scss"
     ],
     "basePath": "app"
   }

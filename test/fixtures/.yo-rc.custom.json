@@ -8,9 +8,9 @@
       "ngroute"
     ],
     "extensions": [
-      ".coffee",
-      ".jade",
-      ".less"
+      "coffee",
+      "jade",
+      "less"
     ],
     "basePath": "app"
   }

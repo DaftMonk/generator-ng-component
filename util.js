@@ -95,7 +95,7 @@ function templateIsUsable (processedName, self) {
   }
 
   var index = processedName.name.lastIndexOf('.');
-  var ext = processedName.name.slice(index);
+  var ext = processedName.name.slice(index + 1);
   var extensions = self.config.get('extensions') || [];
   if(extensions.indexOf(ext) >= 0 && include) {
     return true;
