@@ -38,12 +38,18 @@ module.exports = function (grunt) {
         },
         src: ['test/*.js']
       }
+    },
+    release: {
+      options: {
+        bump: true
+      }
     }
   });
 
   grunt.loadNpmTasks('grunt-contrib-jshint');
   grunt.loadNpmTasks('grunt-contrib-watch');
   grunt.loadNpmTasks('grunt-mocha-test');
+  grunt.loadNpmTasks('grunt-release');
 
   grunt.registerTask('default', ['jshint', 'mochaTest', 'watch']);
 };
