@@ -18,7 +18,7 @@ Generator.prototype.askFor = function askFor() {
   var prompts = [
     {
       name: 'dir',
-      message: 'Where would you like to create this factory?',
+      message: 'Where would you like to create this directive?',
       default: self.config.get('directiveDirectory')
     },
     {
