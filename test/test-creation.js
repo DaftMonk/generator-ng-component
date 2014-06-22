@@ -207,5 +207,40 @@ describe('ng-component generator', function () {
         });
       });
     });
+
+    describe('Controller', function () {
+      it('should generate a new controller', function (done) {
+        generatorTest('controller', 'foo', { dir: 'client/app/' }, function() {
+          helpers.assertFile([
+            path.join('client/app/foo', 'foo.controller.coffee'),
+            path.join('client/app/foo', 'foo.controller.spec.coffee')
+          ]);
+          done();
+        });
+      });
+    });
+
+    describe('Decorator', function () {
+      it('should generate a new decorator', function (done) {
+        generatorTest('decorator', 'foo', { dir: 'client/app/' }, function() {
+          helpers.assertFile([
+            path.join('client/app/foo', 'foo.decorator.coffee')
+          ]);
+          done();
+        });
+      });
+    });
+
+    describe('Provider', function () {
+      it('should generate a new provider', function (done) {
+        generatorTest('provider', 'foo', { dir: 'client/app/' }, function() {
+          helpers.assertFile([
+            path.join('client/app/foo', 'foo.service.coffee'),
+            path.join('client/app/foo', 'foo.service.spec.coffee')
+          ]);
+          done();
+        });
+      });
+    });
   });
 });
