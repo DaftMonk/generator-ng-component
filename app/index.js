@@ -9,9 +9,8 @@ var NgComponentGenerator = yeoman.generators.Base.extend({
 
   info: function () {
     if(!this.options['skip-message']) {
-      console.log(chalk.magenta('You\'re using the fantastic NgComponent generator.\n\n'));
+      console.log(chalk.magenta('You\'re using the fantastic NgComponent generator.\n'));
       console.log(chalk.magenta('Initializing yo-rc.json configuration.\n'));
-      console.log(chalk.magenta('Type `yo ng-component --help` for a list of available generators.'));
     }
   },
 
@@ -22,7 +21,7 @@ var NgComponentGenerator = yeoman.generators.Base.extend({
     this.config.set('serviceDirectory', this.options.serviceDirectory || 'app/components/');
     this.config.set('basePath', this.options.basePath || 'app');
     this.config.set('filters', this.options.filters || ['uirouter']);
-    this.config.set('extensions', this.options.extensions || ['.js', '.html', '.scss']);
+    this.config.set('extensions', this.options.extensions || ['js', 'html', 'scss']);
   }
 });
 
