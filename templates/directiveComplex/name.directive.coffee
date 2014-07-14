@@ -2,5 +2,5 @@
 
 angular.module('<%= scriptAppName %>').directive '<%= cameledName %>', ->
   templateUrl: '<%= htmlUrl %>'
-  restrict: 'E'
+  restrict: 'EA'
   link: (scope, element, attrs) ->
