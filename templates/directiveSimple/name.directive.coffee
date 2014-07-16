@@ -1,6 +1,7 @@
 'use strict'
 
-angular.module('<%= scriptAppName %>').directive '<%= cameledName %>', ->
+angular.module '<%= scriptAppName %>'
+.directive '<%= cameledName %>', ->
   template: '<div></div>'
   restrict: 'EA'
   link: (scope, element, attrs) ->

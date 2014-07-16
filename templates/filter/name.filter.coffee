@@ -1,5 +1,6 @@
 'use strict'
 
-angular.module('<%= scriptAppName %>').filter '<%= cameledName %>', ->
+angular.module '<%= scriptAppName %>'
+.filter '<%= cameledName %>', ->
   (input) ->
     '<%= cameledName %> filter: ' + input
