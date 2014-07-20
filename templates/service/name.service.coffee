@@ -1,5 +1,5 @@
 'use strict'
 
 angular.module '<%= scriptAppName %>'
-.service '<%= classedName %>', <%= classedName %> = ->
+.service '<%= cameledName %>', ->
   # AngularJS will instantiate a singleton by calling 'new' on this function
