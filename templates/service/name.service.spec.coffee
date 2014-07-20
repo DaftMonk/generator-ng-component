@@ -3,12 +3,12 @@
 describe 'Service: <%= classedName %>', ->
 
   # load the service's module
-  beforeEach module('<%= scriptAppName %>')
+  beforeEach module '<%= scriptAppName %>'
 
   # instantiate service
   <%= classedName %> = undefined
-  beforeEach inject((_<%= classedName %>_) ->
+  beforeEach inject (_<%= classedName %>_) ->
     <%= classedName %> = _<%= classedName %>_
-  )
+
   it 'should do something', ->
     expect(!!<%= classedName %>).toBe true

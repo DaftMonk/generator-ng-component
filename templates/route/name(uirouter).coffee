@@ -1,6 +1,7 @@
 'use strict'
 
-angular.module('<%= scriptAppName %>').config ($stateProvider) ->
+angular.module '<%= scriptAppName %>'
+.config ($stateProvider) ->
   $stateProvider.state '<%= name %>',
     url: '<%= route %>'
     templateUrl: '<%= htmlUrl %>'
