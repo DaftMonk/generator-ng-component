@@ -37,10 +37,10 @@ Generator.prototype.askFor = function askFor() {
 };
 
 Generator.prototype.createFiles = function createFiles() {
-  var configName = 'directiveSimple';
+  var configName = 'directiveSimpleTemplates';
   var templateDir = path.join(this.sourceRoot(), 'directiveSimple');
   if (this.complex) {
-    configName = 'directiveComplex';
+    configName = 'directiveComplexTemplates';
     templateDir = path.join(this.sourceRoot(), 'directiveComplex');
   }
 

@@ -22,15 +22,15 @@ var NgComponentGenerator = yeoman.generators.Base.extend({
       'basePath': this.options.basePath || 'app',
       'filters': this.options.filters || ['uirouter'],
       'extensions': this.options.extensions || ['js', 'html', 'scss'],
-      'directiveSimple': this.options.directiveSimple || '',
-      'directiveComplex': this.options.directiveComplex || '',
-      'filter': this.options.filter || '',
-      'service': this.options.service || '',
-      'factory': this.options.factory || '',
-      'controller': this.options.controller || '',
-      'decorator': this.options.decorator || '',
-      'provider': this.options.provider || '',
-      'route': this.options.route || ''
+      'directiveSimpleTemplates': this.options.directiveSimple || '',
+      'directiveComplexTemplates': this.options.directiveComplex || '',
+      'filterTemplates': this.options.filter || '',
+      'serviceTemplates': this.options.service || '',
+      'factoryTemplates': this.options.factory || '',
+      'controllerTemplates': this.options.controller || '',
+      'decoratorTemplates': this.options.decorator || '',
+      'providerTemplates': this.options.provider || '',
+      'routeTemplates': this.options.route || ''
     });
   }
 });
