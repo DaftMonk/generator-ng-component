@@ -10,5 +10,6 @@ describe 'Service: <%= cameledName %>', ->
   beforeEach inject (_<%= cameledName %>_) ->
     <%= cameledName %> = _<%= cameledName %>_
 
-  it 'should do something', ->
-    expect(!!<%= cameledName %>).toBe true
+  it 'should do something', -><% if (hasFilter('jasmine')) { %>
+    expect(!!<%= cameledName %>).toBe true<% } if (hasFilter('mocha')) { %>
+    expect(!!<%= cameledName %>).to.be.true<% } %>

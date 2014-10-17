@@ -13,5 +13,6 @@ describe 'Controller: <%= classedName %>Ctrl', ->
     <%= classedName %>Ctrl = $controller '<%= classedName %>Ctrl',
       $scope: scope
 
-  it 'should ...', ->
-    expect(1).toEqual 1
+  it 'should ...', -><% if (hasFilter('jasmine')) { %>
+    expect(1).toEqual 1<% } if (hasFilter('mocha')) { %>
+    expect(1).to.equal 1<% } %>

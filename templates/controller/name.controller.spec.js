@@ -15,7 +15,8 @@ describe('Controller: <%= classedName %>Ctrl', function () {
     });
   }));
 
-  it('should ...', function () {
-    expect(1).toEqual(1);
+  it('should ...', function () {<% if (hasFilter('jasmine')) { %>
+    expect(1).toEqual(1);<% } if (hasFilter('mocha')) { %>
+    expect(1).to.equal(1);<% } %>
   });
 });
