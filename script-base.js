@@ -18,6 +18,10 @@ var Generator = module.exports = function Generator() {
   this.cameledName = this._.camelize(this.name);
   this.classedName = this._.classify(this.name);
 
+  this.hasFilter = function(filter) {
+    return this.config.get('filters').indexOf(filter) !== -1;
+  }.bind(this);
+
   if (typeof this.env.options.appPath === 'undefined') {
     try {
       this.env.options.appPath = require(path.join(process.cwd(), 'bower.json')).appPath;
