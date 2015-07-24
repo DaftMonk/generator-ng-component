@@ -31,8 +31,5 @@
     "grunt-mocha-test": "^0.10.2",
     "grunt-release": "^0.7.0",
     "mocha": "*"
-  },
-  "peerDependencies": {
-    "yo": ">=1.0.0"
   }
 }
