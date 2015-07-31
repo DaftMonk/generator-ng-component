@@ -14,7 +14,7 @@ describe('ng-component generator', function () {
     ngGenerator = helpers.createGenerator('ng-component:' + generatorType, deps, [name]);
 
     helpers.mockPrompt(ngGenerator, mockPrompt);
-    ngGenerator.run([], function () {
+    ngGenerator.run(function () {
       callback();
     });
   }
