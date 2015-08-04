@@ -1,6 +1,7 @@
 {
   "generator-ng-component": {
     "routeDirectory": "client/app/",
+    "directivePrefix": "nsl",
     "directiveDirectory": "client/app/",
     "filterDirectory": "client/app/",
     "serviceDirectory": "client/app/",

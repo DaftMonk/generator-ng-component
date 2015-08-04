@@ -16,6 +16,7 @@ var NgComponentGenerator = yeoman.generators.Base.extend({
   saveConfig: function () {
     this.config.defaults({
       'routeDirectory': this.options.routeDirectory || 'app/components/',
+      'directivePrefix': this.options.directivePrefix || 'nsl',
       'directiveDirectory': this.options.directiveDirectory || 'app/components/',
       'filterDirectory': this.options.filterDirectory || 'app/components/',
       'serviceDirectory': this.options.serviceDirectory || 'app/components/',

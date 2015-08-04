@@ -1,19 +1,17 @@
 'use strict';
 
-describe('Service: <%= cameledName %>', function () {
+describe('Service: <%= cameledName %>Service', function() {
 
-  // load the service's module
-  beforeEach(module('<%= scriptAppName %>'));
+    beforeEach(function() {
+        // load the service's module
+        module('<%= scriptAppName %>');
+        // instantiate service
+        bard.inject('<%= cameledName %>Service');
+    });
 
-  // instantiate service
-  var <%= cameledName %>;
-  beforeEach(inject(function (_<%= cameledName %>_) {
-    <%= cameledName %> = _<%= cameledName %>_;
-  }));
-
-  it('should do something', function () {<% if (hasFilter('jasmine')) { %>
-    expect(!!<%= cameledName %>).toBe(true);<% } if (hasFilter('mocha')) { %>
-    expect(!!<%= cameledName %>).to.be.true;<% } %>
-  });
+    it('should do something', function() {<% if (hasFilter('jasmine')) { %>
+        expect(!!<%= cameledName %>Service).toBe(true);<% } if (hasFilter('mocha')) { %>
+        expect(!!<%= cameledName %>Service).to.be.true;<% } %>
+    });
 
 });

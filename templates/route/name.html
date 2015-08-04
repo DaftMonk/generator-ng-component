@@ -1,1 +1,7 @@
-<div>This is the <%= name %> view.</div>
+<div>This is the <%= name %> view.
+  <p>This comes from the backend {{ vm.service.<%= name %>FromBackend }}</p>
+  <p>Use "one time binding" like this: {{ :vm.someThing }}.
+      After the first update the $watch will be removed from the variable,
+      so it won't cost more resources to check it's value every digest cycle (performance).
+  </p>
+</div>

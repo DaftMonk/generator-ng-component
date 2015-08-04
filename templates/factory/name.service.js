@@ -1,16 +1,34 @@
 'use strict';
 
 angular.module('<%= scriptAppName %>')
-  .factory('<%= cameledName %>', function () {
-    // Service logic
-    // ...
+    .factory('<%= cameledName %>Service', function() {
+        // Public API
+        var service = {
+            exPublicVariable: null,
+            exPublicFunction: exPublicFunction,
+        };
+        // Private variables
+        var exPrivateVariable = null;
 
-    var meaningOfLife = 42;
+        return service;
 
-    // Public API here
-    return {
-      someMethod: function () {
-        return meaningOfLife;
-      }
-    };
-  });
+        ////////////////
+
+        /**
+         * Example public function
+         * that will be accessible for the controllers, services
+         */
+        function exPublicFunction() {
+            exPrivateFunction();
+            exPrivateVariable = 'foo';
+            service.exPublicVariable = 'bart';
+        }
+
+        /**
+         * Example private function
+         * that will NOT be accessible for the controllers, services
+         */
+        function exPrivateFunction() {
+
+        }
+    });
