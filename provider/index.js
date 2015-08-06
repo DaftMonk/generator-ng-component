@@ -23,7 +23,8 @@ Generator.prototype.askFor = function askFor() {
   ];
 
   this.prompt(prompts, function (props) {
-    this.dir = path.join(props.dir, this.name);
+    // No need for a separate folder for the component this.dir = path.join(props.dir, this.name);
+    this.dir = props.dir;
     done();
   }.bind(this));
 };

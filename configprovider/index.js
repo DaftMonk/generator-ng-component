@@ -17,17 +17,18 @@ Generator.prototype.askFor = function askFor() {
   var prompts = [
     {
       name: 'dir',
-      message: 'Where would you like to create this service?',
+      message: 'Where would you like to create this config provider?',
       default: self.config.get('serviceDirectory')
     }
   ];
 
   this.prompt(prompts, function (props) {
-    this.dir = path.join(props.dir, this.name);
+    // No need for a separate folder for the component this.dir = path.join(props.dir, this.name);
+    this.dir = props.dir;
     done();
   }.bind(this));
 };
 
 Generator.prototype.createFiles = function createFiles() {
-  ngUtil.copyTemplates(this, 'service');
+  ngUtil.copyTemplates(this, 'configprovider');
 };

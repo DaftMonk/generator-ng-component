@@ -1,22 +1,25 @@
 'use strict';
 
-describe('Controller: <%= classedName %>Ctrl', function () {
+describe('Controller: <%= classedName %>Controller', function() {
+    var controller;
 
-  // load the controller's module
-  beforeEach(module('<%= scriptAppName %>'));
+    // load the controller's module
+    beforeEach(module('<%= scriptAppName %>'));
 
-  var <%= classedName %>Ctrl, scope;
+    // Initialize the controller and a mock scope if it is needed
+    beforeEach(inject(function($controller) {
+        controller = $controller('<%= controllerName %>', {});
+    }));
 
-  // Initialize the controller and a mock scope
-  beforeEach(inject(function ($controller, $rootScope) {
-    scope = $rootScope.$new();
-    <%= classedName %>Ctrl = $controller('<%= classedName %>Ctrl', {
-      $scope: scope
+    describe('Admin controller', function() {
+        it('should be created successfully', function() {
+            expect(controller).to.be.defined;
+        });
+
+        describe('after activate', function() {
+            it('should have exPublicVariable of exampleVar', function() {
+                expect(controller.exPublicVariable).to.equal('exampleVar');
+            });
+        });
     });
-  }));
-
-  it('should ...', function () {<% if (hasFilter('jasmine')) { %>
-    expect(1).toEqual(1);<% } if (hasFilter('mocha')) { %>
-    expect(1).to.equal(1);<% } %>
-  });
 });
