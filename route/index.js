@@ -30,7 +30,11 @@ Generator.prototype.askFor = function askFor() {
   ];
 
   this.prompt(prompts, function (props) {
-    this.route = props.route;
+    if (props.route.indexOf('/') == 0) {
+        this.route = props.route;
+    } else {
+        this.route = "/" + props.route;
+    }
     this.dir = path.join(props.dir, this.name);
     done();
   }.bind(this));
