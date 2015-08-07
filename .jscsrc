@@ -4,6 +4,5 @@
         "value": 120
     },
     "validateIndentation": 4,
-    "requireCamelCaseOrUpperCaseIdentifiers": "ignoreProperties",
-    "disallowTrailingWhitespace": "ignoreEmptyLines"
+    "requireCamelCaseOrUpperCaseIdentifiers": "ignoreProperties"
 }
