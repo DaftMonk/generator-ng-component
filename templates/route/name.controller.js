@@ -44,15 +44,15 @@ angular.module('<%= scriptAppName %>')
         function change<%= classedName %>(form) {
             vm.submitted = true;
             if (form.$valid) {
-            <%= dataServiceName %>.change<%= classedName %>(vm.<%= cameledName %>)
-                        .then(function() {
-                            vm.message = '<%= classedName %> successfully changed.';
-                        })
-                        .catch(function() {
-                            //form.exampleField.$setValidity('mongoose', false);
-                            vm.errors.other = 'Incorrect password';
-                            vm.message = '';
-                        });
+                <%= dataServiceName %>.change<%= classedName %>(vm.<%= cameledName %>)
+                    .then(function() {
+                        vm.message = '<%= classedName %> successfully changed.';
+                    })
+                    .catch(function() {
+                        //form.exampleField.$setValidity('mongoose', false);
+                        vm.errors.other = 'Incorrect password';
+                        vm.message = '';
+                    });
             }
 
         }
@@ -75,4 +75,4 @@ angular.module('<%= scriptAppName %>')
         function get<%= classedName %>() {
             return <%= serviceName %>.get<%= classedName %>();
         }
-});
+    });

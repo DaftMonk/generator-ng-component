@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('<%= scriptAppName %>')
-    .factory('<%= serviceName %>', function (<%= dataServiceName %>) {
+    .factory('<%= serviceName %>', function(<%= dataServiceName %>) {
         // Public API
         var service = {
             // This variable will be accessible in every place where the service will be injected
@@ -37,8 +37,6 @@ angular.module('<%= scriptAppName %>')
             }
         }
 
-
-
         /**
          * Example private function
          * that will NOT be accessible for the controllers, services
@@ -46,4 +44,4 @@ angular.module('<%= scriptAppName %>')
         function exPrivateFunction() {
 
         }
-});
+    });
