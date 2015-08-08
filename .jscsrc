@@ -4,5 +4,6 @@
         "value": 120
     },
     "validateIndentation": 4,
-    "requireCamelCaseOrUpperCaseIdentifiers": "ignoreProperties"
+    "requireCamelCaseOrUpperCaseIdentifiers": "ignoreProperties",
+    "requireBlocksOnNewline": 1
 }
