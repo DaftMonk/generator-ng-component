@@ -1,3 +1,4 @@
+/* jshint -W117, -W030 */
 'use strict';
 
 describe('Service: <%= dataServiceName %>', function() {

@@ -13,7 +13,7 @@ angular.module('<%= scriptAppName %>')
         vm.exPublicFunction = exPublicFunction;
 
         // Private variables
-        var exPrivateVariable = null;
+        //var exPrivateVariable = null;
 
         activate();
 
@@ -36,7 +36,7 @@ angular.module('<%= scriptAppName %>')
         /**
          * Example private function that will NOT be accessible for the view
          */
-        function exPrivateFunction() {
-
-        }
+        //function exPrivateFunction() {
+        //
+        //}
     });

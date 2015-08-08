@@ -30,6 +30,7 @@ angular.module('<%= scriptAppName %>')
          */
         function activate() {
             vm.exPublicVariable = 'exampleVar';
+            exPrivateVariable = 'exampleVar';
             var promises = [get<%= classedName %>(), collectThings()];
             return $q.all(promises).then(function() {
                 //logger.info('Activated <%= classedName %> View');

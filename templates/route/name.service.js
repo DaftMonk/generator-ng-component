@@ -11,7 +11,7 @@ angular.module('<%= scriptAppName %>')
             get<%= classedName %>: get<%= classedName %>,
         };
         // Private variables
-        var exPrivateVariable = null;
+        //var exPrivateVariable = null;
 
         return service;
 
@@ -41,7 +41,7 @@ angular.module('<%= scriptAppName %>')
          * Example private function
          * that will NOT be accessible for the controllers, services
          */
-        function exPrivateFunction() {
-
-        }
+        //function exPrivateFunction() {
+        //    exPrivateVariable = null;
+        //}
     });

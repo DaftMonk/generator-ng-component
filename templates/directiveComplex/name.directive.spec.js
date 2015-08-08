@@ -1,3 +1,4 @@
+/* jshint -W117, -W030 */
 'use strict';
 
 /**
@@ -7,7 +8,7 @@
 describe('Directive: <%= prefixedCameledName %>', function() {
     var element;
     var scope;
-    var firstDivElement;
+    //var firstDivElement;
 
     // load the directive's module and view
     beforeEach(module('<%= scriptAppName %>'));

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('<%= scriptAppName %>')
-    .factory('<%= dataServiceName %>', function($http, $q) {
+    .factory('<%= dataServiceName %>', function($http, $q, <%= classedName %>) {
         // Public API
         var service = {
             change<%= classedName %>: change<%= classedName %>,

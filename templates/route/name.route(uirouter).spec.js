@@ -1,10 +1,13 @@
+/* jshint -W117, -W030 */
+'use strict';
+
 describe('<%= cameledName %> routes', function() {
     describe('state', function() {
         var view = '<%= htmlUrl %>';
 
         beforeEach(function() {
             module('<%= scriptAppName %>', bard.fakeToastr);
-            bard.inject('$httpBackend', '$location', '$rootScope', '$state', '$templateCache');
+            bard.inject('$httpBackend', '$rootScope', '$state', '$templateCache');
         });
 
         beforeEach(function() {

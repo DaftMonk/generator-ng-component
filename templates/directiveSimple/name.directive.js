@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('<%= scriptAppName %>')
-    .directive('<%= prefixedCameledName %>', function () {
+    .directive('<%= prefixedCameledName %>', function() {
         var directive = {
             restrict: 'EA',
             template: [
@@ -18,9 +18,9 @@ angular.module('<%= scriptAppName %>')
 
         ////////////////
 
-        function link(scope, element, attrs) {
+        function link(scope, element) {
             // Manipulate the DOM here if it is really necessary
-            element.on('click', function () {
+            element.on('click', function() {
                 // Handle click event
             });
         }

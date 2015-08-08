@@ -9,7 +9,7 @@ angular.module('<%= scriptAppName %>')
     .provider('<%= cameledName %>Config', function() {
 
         /* jshint validthis:true */
-        this.config = {};
+        var config = {};
 
         /**
          * Set the exConfigVariable
@@ -17,12 +17,12 @@ angular.module('<%= scriptAppName %>')
          * @param {Object} value
          */
         this.setExConfigVariable = function(value) {
-            this.config.exConfigVariable = value;
+            config.exConfigVariable = value;
         };
 
         this.$get = function() {
             return {
-                config: this.config
+                config: config
             };
         };
     });

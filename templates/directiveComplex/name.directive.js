@@ -31,14 +31,14 @@ angular.module('<%= scriptAppName %>')
 
         ////////////////
 
-        function link(scope, element, attrs) {
+        function link(scope, element) {
             // Manipulate the DOM here if it is really necessary
             //console.log('LINK: scope.vm.config = %s', scope.vm.config);
             //console.log('LINK: scope.vm.notify = %s', scope.vm.notify);
             //console.log('LINK: scope.vm.exPublicVariable = %s', scope.vm.exPublicVariable);
             // Directives should clean up after themselves
             element.on('$destroy', function() {
-                scope.onDestroy();
+                scope.vm.onDestroy();
             });
             // Click event listener
             element.on('click', function() {

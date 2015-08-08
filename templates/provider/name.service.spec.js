@@ -6,10 +6,9 @@ describe('Service: <%= cameledName %>', function() {
     beforeEach(module('<%= scriptAppName %>'));
 
     // instantiate service
-    var <%= cameledName %>;
-    beforeEach(inject(function(_<%= cameledName %>_) {
-    <%= cameledName %> = _<%= cameledName %>_;
-    }));
+    beforeEach(function() {
+        bard.inject('<%= cameledName %>');
+    });
 
     it('should do something', function() {<% if (hasFilter('jasmine')) { %>
         expect(!!<%= cameledName %>).toBe(true);<% } if (hasFilter('mocha')) { %>
