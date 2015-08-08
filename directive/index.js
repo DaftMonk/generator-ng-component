@@ -17,6 +17,11 @@ Generator.prototype.askFor = function askFor() {
 
   var prompts = [
     {
+      name: 'prefix',
+      message: 'What prefix do you need for this directive?',
+      default: self.config.get('directivePrefix')
+    },
+    {
       name: 'dir',
       message: 'Where would you like to create this directive?',
       default: self.config.get('directiveDirectory')
@@ -30,8 +35,14 @@ Generator.prototype.askFor = function askFor() {
   ];
 
   this.prompt(prompts, function (props) {
-    this.dir = path.join(props.dir, this.name);
+    this.name = props.prefix + '-' + this.name;
     this.complex = props.complex;
+    if (this.complex) {
+        // Create a separate folder for the complex directive because it will have more files
+        this.dir = path.join(props.dir, this.name);
+    } else {
+        this.dir = props.dir;
+    }
     done();
   }.bind(this));
 };
@@ -46,5 +57,6 @@ Generator.prototype.createFiles = function createFiles() {
 
   var basePath = this.config.get('basePath') || '';
   this.htmlUrl = ngUtil.relativeUrl(basePath, path.join(this.dir, this.name + '.html'));
+  this.prefixedCameledName = this._.camelize(this.name);
   ngUtil.copyTemplates(this, 'directive', templateDir, configName);
 };

@@ -30,7 +30,11 @@ Generator.prototype.askFor = function askFor() {
   ];
 
   this.prompt(prompts, function (props) {
-    this.route = props.route;
+    if (props.route.indexOf('/') == 0) {
+        this.route = props.route;
+    } else {
+        this.route = "/" + props.route;
+    }
     this.dir = path.join(props.dir, this.name);
     done();
   }.bind(this));
@@ -39,5 +43,8 @@ Generator.prototype.askFor = function askFor() {
 Generator.prototype.createFiles = function createFiles() {
   var basePath = this.config.get('basePath') || '';
   this.htmlUrl = ngUtil.relativeUrl(basePath, path.join(this.dir, this.name + '.html'));
+  this.serviceName = this._.camelize(this.name) + 'Service';
+  this.dataServiceName = this._.camelize(this.name) + 'DataService';
+  this.controllerName = this._.classify(this.name) + 'Controller';
   ngUtil.copyTemplates(this, 'route');
 };

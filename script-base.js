@@ -15,6 +15,7 @@ var Generator = module.exports = function Generator() {
   this.appname = this._.slugify(this._.humanize(this.appname));
   this.scriptAppName = this.config.get('moduleName') || this._.camelize(this.appname) + ngUtils.appName(this);
 
+  this.name = this._.dasherize(this.name);
   this.cameledName = this._.camelize(this.name);
   this.classedName = this._.classify(this.name);
 
