@@ -15,4 +15,4 @@ describe 'Controller: <%= classedName %>Ctrl', ->
 
   it 'should ...', -><% if (hasFilter('jasmine')) { %>
     expect(1).toEqual 1<% } if (hasFilter('mocha')) { %>
-    expect(1).to.equal 1<% } %>
+    <%= expect() %>1<%= to() %>.equal 1<% } %>
