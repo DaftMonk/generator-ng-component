@@ -11,7 +11,7 @@ var Generator = module.exports = function Generator() {
 
 util.inherits(Generator, ScriptBase);
 
-Generator.prototype.askFor = function askFor() {
+Generator.prototype.prompting = function askFor() {
   var self = this;
   var done = this.async();
 
@@ -36,7 +36,7 @@ Generator.prototype.askFor = function askFor() {
   }.bind(this));
 };
 
-Generator.prototype.createFiles = function createFiles() {
+Generator.prototype.writing = function createFiles() {
   var configName = 'directiveSimpleTemplates';
   var templateDir = path.join(this.sourceRoot(), 'directiveSimple');
   if (this.complex) {

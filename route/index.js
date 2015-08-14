@@ -11,7 +11,7 @@ var Generator = module.exports = function Generator() {
 
 util.inherits(Generator, ScriptBase);
 
-Generator.prototype.askFor = function askFor() {
+Generator.prototype.prompting = function askFor() {
   var self = this;
   var name = this.name;
 
@@ -36,7 +36,7 @@ Generator.prototype.askFor = function askFor() {
   }.bind(this));
 };
 
-Generator.prototype.createFiles = function createFiles() {
+Generator.prototype.writing = function createFiles() {
   var basePath = this.config.get('basePath') || '';
   this.htmlUrl = ngUtil.relativeUrl(basePath, path.join(this.dir, this.name + '.html'));
   ngUtil.copyTemplates(this, 'route');
