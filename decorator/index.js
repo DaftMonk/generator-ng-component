@@ -1,6 +1,5 @@
 'use strict';
 var path = require('path');
-var yeoman = require('yeoman-generator');
 var util = require('util');
 var ngUtil = require('../util');
 var ScriptBase = require('../script-base.js');
