@@ -11,7 +11,7 @@ describe 'Directive: <%= cameledName %>', ->
     scope = $rootScope.$new()
 
   it 'should make hidden element visible', inject ($compile) ->
-    element = angular.element '<<%= _.dasherize(name) %>></<%= _.dasherize(name) %>>'
+    element = angular.element '<<%= lodash.dasherize(name) %>></<%= lodash.dasherize(name) %>>'
     element = $compile(element) scope
     scope.$apply()<% if (hasFilter('jasmine')) { %>
     expect(element.text()).toBe 'this is the <%= cameledName %> directive'<% } if (hasFilter('mocha')) { %>

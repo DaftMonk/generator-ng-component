@@ -71,7 +71,7 @@ function appName (self) {
   if (counter === 0 || (typeof suffix === 'boolean' && suffix)) {
     suffix = 'App';
   }
-  return suffix ? self._.classify(suffix) : '';
+  return suffix ? self.lodash.classify(suffix) : '';
 }
 
 function createFileName (template, name) {
