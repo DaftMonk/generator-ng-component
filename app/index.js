@@ -14,7 +14,7 @@ var NgComponentGenerator = yeoman.generators.Base.extend({
   },
 
   configuring: function () {
-    this.config.defaults({
+    var config = {
       'routeDirectory': this.options.routeDirectory || 'app/components/',
       'directiveDirectory': this.options.directiveDirectory || 'app/components/',
       'filterDirectory': this.options.filterDirectory || 'app/components/',
@@ -32,7 +32,14 @@ var NgComponentGenerator = yeoman.generators.Base.extend({
       'decoratorTemplates': this.options.decorator || '',
       'providerTemplates': this.options.provider || '',
       'routeTemplates': this.options.route || ''
-    });
+    };
+
+    if (this.options.forceConfig) {
+      this.config.set(config);
+      this.config.forceSave();
+    } else {
+      this.config.defaults(config);
+    }
   }
 });
 
