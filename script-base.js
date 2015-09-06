@@ -22,6 +22,14 @@ var Generator = module.exports = function Generator() {
     return this.config.get('filters').indexOf(filter) !== -1;
   }.bind(this);
 
+  // dynamic assertion statements
+  this.expect = function() {
+    return this.hasFilter('expect') ? 'expect(' : '';
+  }.bind(this);
+  this.to = function() {
+    return this.hasFilter('expect') ? ').to' : '.should';
+  }.bind(this);
+
   if (typeof this.env.options.appPath === 'undefined') {
     try {
       this.env.options.appPath = require(path.join(process.cwd(), 'bower.json')).appPath;

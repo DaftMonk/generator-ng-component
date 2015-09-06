@@ -13,7 +13,7 @@ describe('Service: <%= cameledName %>', function () {
 
   it('should do something', function () {<% if (hasFilter('jasmine')) { %>
     expect(!!<%= cameledName %>).toBe(true);<% } if (hasFilter('mocha')) { %>
-    expect(!!<%= cameledName %>).to.be.true;<% } %>
+    <%= expect() %>!!<%= cameledName %><%= to() %>.be.true;<% } %>
   });
 
 });
