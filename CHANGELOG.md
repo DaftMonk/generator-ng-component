@@ -1,3 +1,19 @@
+<a name="0.1.1"></a>
+### 0.1.1 (2015-09-06)
+
+
+#### Features
+
+* **gen:**
+  * use yeoman's grouped queues ([e265f34](https://github.com/DaftMonk/generator-ng-component/commit/e265f34f74cf74d19d70c1baa7e67665fc7e3545))
+  * add dynamic mocha assertions ([b64455d](https://github.com/DaftMonk/generator-ng-component/commit/b64455d62c00b3cb6134c9a35538dab74d6d452b))
+  * config can be force updated via `options.forceConfig` ([0e81bb4](https://github.com/DaftMonk/generator-ng-component/commit/0e81bb47b56280d94cc45a784c81f2ee8113e9e6))
+
+#### Chore
+
+* **gen:** update yeoman-generator to `~0.19.2` ([a861e29](https://github.com/DaftMonk/generator-ng-component/commit/a861e292a6aa5d4c5980a6c31f82fec6ae7850c9))
+
+
 <a name="0.1.0"></a>
 ## 0.1.0 (2015-08-05)
 
