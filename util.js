@@ -118,7 +118,7 @@ function copyTemplates (self, type, templateDir, configName) {
       var templateFile = path.join(templateDir, template);
 
       if(templateIsUsable(processedName, self)) {
-        self.template(templateFile, path.join(self.dir, fileName));
+        self.fs.copyTpl(templateFile, path.join(self.dir, fileName), self);
       }
     });
 };
