@@ -23,7 +23,7 @@
     "chalk": "~0.4.0",
     "lodash": "^3.10.1",
     "underscore.string": "^3.2.2",
-    "yeoman-generator": "~0.19.2"
+    "yeoman-generator": "~0.20.3"
   },
   "devDependencies": {
     "chai": "^1.9.1",
