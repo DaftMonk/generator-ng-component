@@ -21,6 +21,8 @@ var NgComponentGenerator = yeoman.generators.Base.extend({
       'serviceDirectory': this.options.serviceDirectory || 'app/components/',
       'basePath': this.options.basePath || 'app',
       'moduleName': this.options.moduleName || '',
+      'modulePrompt': this.options.hasOwnProperty('modulePrompt') ?
+        this.options.modulePrompt : true,
       'filters': this.options.filters || ['uirouter', 'jasmine'],
       'extensions': this.options.extensions || ['js', 'html', 'scss'],
       'directiveSimpleTemplates': this.options.directiveSimple || '',
