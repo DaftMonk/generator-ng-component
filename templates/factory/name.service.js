@@ -1,16 +1,29 @@
-'use strict';
+(function() {
+  'use strict';
 
-angular.module('<%= scriptAppName %>')
-  .factory('<%= cameledName %>', function () {
+angular
+  .module('<%= scriptAppName %>')
+  .factory('<%= cameledName %>', <%= cameledName %>);
+
+  function <%= cameledName %>() {
     // Service logic
     // ...
 
     var meaningOfLife = 42;
 
-    // Public API here
-    return {
-      someMethod: function () {
-        return meaningOfLife;
-      }
+    var service = {
+      someMethod: someMethod
     };
-  });
+
+    // Public API here
+    return service;
+
+    ///////
+
+    function someMethod() {
+      return meaningOfLife;
+    };
+    
+  };
+
+})();
