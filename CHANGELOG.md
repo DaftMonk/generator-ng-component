@@ -13,6 +13,10 @@
 
 * **gen:** update yeoman-generator to `~0.19.2` ([a861e29](https://github.com/DaftMonk/generator-ng-component/commit/a861e292a6aa5d4c5980a6c31f82fec6ae7850c9))
 
+#### Breaking Changes
+
+* `yeoman-generator@0.19.2` deprecates the use of `this._`. If your templates use lodash methods, you should now reference `this.lodash`.
+
 
 <a name="0.1.0"></a>
 ## 0.1.0 (2015-08-05)
