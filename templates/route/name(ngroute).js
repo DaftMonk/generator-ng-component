@@ -5,6 +5,7 @@ angular.module('<%= scriptAppName %>')
     $routeProvider
       .when('<%= route %>', {
         templateUrl: '<%= htmlUrl %>',
-        controller: '<%= classedName %>Controller'
+        controller: '<%= classedName %>Controller'<% if(hasFilter('es6')) { %>,
+        controllerAs: 'vm'<% } %>
       });
   });
