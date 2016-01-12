@@ -6,6 +6,7 @@ angular.module('<%= scriptAppName %>')
       .state('<%= name %>', {
         url: '<%= route %>',
         templateUrl: '<%= htmlUrl %>',
-        controller: '<%= classedName %>Ctrl'
+        controller: '<%= classedName %>Controller'<% if(hasFilter('es6')) { %>,
+        controllerAs: 'vm'<% } %>
       });
   });
