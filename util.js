@@ -103,7 +103,12 @@ function templateIsUsable (processedName, self) {
   return false;
 }
 
-function copyTemplates (self, type, templateDir, configName) {
+function defaultIteratee(dest) {
+  return dest;
+}
+
+function copyTemplates(self, type, templateDir, configName, iteratee) {
+  if(!iteratee) { iteratee = defaultIteratee; }
   templateDir = templateDir || path.join(self.sourceRoot(), type);
   configName = configName || type + 'Templates';
 
@@ -118,7 +123,11 @@ function copyTemplates (self, type, templateDir, configName) {
       var templateFile = path.join(templateDir, template);
 
       if(templateIsUsable(processedName, self)) {
-        self.fs.copyTpl(templateFile, path.join(self.dir, fileName), self);
+        var dest = path.join(self.dir, fileName);
+
+        dest = iteratee(dest);
+
+        self.fs.copyTpl(templateFile, dest, self);
       }
     });
 };
