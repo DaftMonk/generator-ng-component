@@ -1,16 +1,16 @@
 'use strict';
 
-describe('Component: <%= cameledName %>Component', function () {
+describe('Component: <%= lowerCameledName %>Component', function () {
 
   // load the controller's module
   beforeEach(module('<%= scriptAppName %>'));
 
-  var <%= cameledName %>Component, scope;
+  var <%= lowerCameledName %>Component, scope;
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($componentController, $rootScope) {
     scope = $rootScope.$new();
-    <%= cameledName %>Component = $componentController('<%= cameledName %>Component', {
+    <%= lowerCameledName %>Component = $componentController('<%= lowerCameledName %>Component', {
       $scope: scope
     });
   }));

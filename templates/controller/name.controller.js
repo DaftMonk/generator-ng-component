@@ -1,6 +1,19 @@
 'use strict';
 
-angular.module('<%= scriptAppName %>')
-  .controller('<%= classedName %>Ctrl', function ($scope) {
-    $scope.message = 'Hello';
-  });
+(function(){
+  <% if(hasFilter('es6')) { %>
+  class <%= classedName %>Controller {
+      constructor() {
+        this.message = 'Hello';
+      }
+    }<% } else { %>
+    function <%= classedName %>Controller($scope) {
+      $scope.message = 'Hello';
+    }<% } %>
+
+  angular.module('<%= scriptAppName %>')
+    .component('<%= lowerCameledName %>Component', {
+      controller: <%= classedName %>Controller
+});
+
+})();
