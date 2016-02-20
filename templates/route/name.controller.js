@@ -11,6 +11,9 @@ function <%= classedName %>Controller($scope) {
 }<% } %>
 
 angular.module('<%= scriptAppName %>')
-  .controller('<%= classedName %>Controller', <%= classedName %>Controller);
+  .component('<%= cameledName %>Component', {
+    templateUrl: '<%= htmlUrl %>',
+    controller: <%= classedName %>Controller
+  });
 
 })();
