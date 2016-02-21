@@ -31,6 +31,7 @@ var NgComponentGenerator = yeoman.generators.Base.extend({
       'serviceTemplates': this.options.service || '',
       'factoryTemplates': this.options.factory || '',
       'controllerTemplates': this.options.controller || '',
+      'componentTemplates': this.options.component || '',
       'decoratorTemplates': this.options.decorator || '',
       'providerTemplates': this.options.provider || '',
       'routeTemplates': this.options.route || ''

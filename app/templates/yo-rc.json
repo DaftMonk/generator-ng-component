@@ -19,6 +19,8 @@
       "directiveTest": "",
       "service": "",
       "serviceTest": "",
+      "component": "",
+      "componentTest": "",
       "controller": "",
       "controllerTest": "",
       "filter": "",

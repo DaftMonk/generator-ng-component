@@ -3,6 +3,7 @@ Description:
 
 Available Generators:
   yo ng-component:route [name]
+  yo ng-component:component [name]
   yo ng-component:directive [name]
   yo ng-component:service [name]
   yo ng-component:factory [name]

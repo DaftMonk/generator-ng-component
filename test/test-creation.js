@@ -113,6 +113,18 @@ describe('ng-component generator', function () {
         });
       });
     });
+
+    describe('Component', function () {
+      it('should generate a new component', function (done) {
+        generatorTest('component', 'foo', { dir: 'app/components/' }, function() {
+          yoAssert.file([
+            path.join('app/components/foo', 'foo.component.js'),
+            path.join('app/components/foo', 'foo.component.spec.js')
+          ]);
+          done();
+        });
+      });
+    });
   });
 
   describe('with custom configuration', function() {
@@ -243,5 +255,18 @@ describe('ng-component generator', function () {
         });
       });
     });
+
+    describe('Component', function () {
+      it('should generate a new component', function (done) {
+        generatorTest('component', 'foo', { dir: 'app/components/' }, function() {
+          yoAssert.file([
+            path.join('app/components/foo', 'foo.component.coffee'),
+            path.join('app/components/foo', 'foo.component.spec.coffee')
+          ]);
+          done();
+        });
+      });
+    });
+
   });
 });
