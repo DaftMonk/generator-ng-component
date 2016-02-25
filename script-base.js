@@ -24,8 +24,7 @@ var Generator = module.exports = function Generator() {
 
   this.cameledName = lodash.camelize(this.name);
   this.classedName = lodash.classify(this.name);
-  this.sluggedName = lodash.slugify(lodash.startCase(this.name));//Convert 'exampleName' or 'ExampleName' to 'example-name'
-  this.lowerCameledName = lodash.lowerFirst(this.cameledName);
+  this.kebabName = lodash.kebabCase(this.name);
 
   this.hasFilter = function(filter) {
     return this.config.get('filters').indexOf(filter) !== -1;

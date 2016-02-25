@@ -5,6 +5,6 @@ angular.module('<%= scriptAppName %>')
     $stateProvider
       .state('<%= name %>', {
         url: '<%= route %>',
-        template: '<<%= sluggedName %>-component></<%= sluggedName %>-component>'
+        template: '<<%= kebabName %>></<%= kebabName %>>'
       });
   });

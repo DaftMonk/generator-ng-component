@@ -1,17 +1,17 @@
 'use strict'
 
-describe 'Controller: <%= classedName %>Controller', ->
+describe 'Component: <%= classedName %>Component', ->
 
   # load the controller's module
-  beforeEach module '<%= scriptAppName %>'
-  <%= classedName %>Controller = undefined
+  beforeEach module('<%= scriptAppName %>')
+  <%= classedName %>Component = undefined
   scope = undefined
 
   # Initialize the controller and a mock scope
-  beforeEach inject ($controller, $rootScope) ->
+  beforeEach inject(($componentController, $rootScope) ->
     scope = $rootScope.$new()
-    <%= classedName %>Controller = $controller '<%= classedName %>Controller',
-      $scope: scope
+    <%= classedName %>Component = $componentController('<%= classedName %>Component', $scope: scope)
+  )
 
   it 'should ...', -><% if (hasFilter('jasmine')) { %>
     expect(1).toEqual 1<% } if (hasFilter('mocha')) { %>

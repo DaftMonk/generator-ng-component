@@ -10,7 +10,7 @@ describe('Component: <%= classedName %>Component', function () {
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($componentController, $rootScope) {
     scope = $rootScope.$new();
-    <%= classedName %>Component = $componentController('<%= cameledName %>', {
+    <%= classedName %>Component = $componentController('<%= classedName %>Component', {
       $scope: scope
     });
   }));
