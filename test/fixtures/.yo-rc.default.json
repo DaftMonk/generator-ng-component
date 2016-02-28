@@ -2,6 +2,7 @@
   "generator-ng-component": {
     "routeDirectory": "app/components/",
     "directiveDirectory": "app/components/",
+    "componentDirectory": "app/components/",
     "filterDirectory": "app/components/",
     "serviceDirectory": "app/components/",
     "filters": [

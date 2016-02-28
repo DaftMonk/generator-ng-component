@@ -17,6 +17,7 @@ var NgComponentGenerator = yeoman.generators.Base.extend({
     var config = {
       'routeDirectory': this.options.routeDirectory || 'app/components/',
       'directiveDirectory': this.options.directiveDirectory || 'app/components/',
+      'componentDirectory': this.options.componentDirectory || 'app/components/',
       'filterDirectory': this.options.filterDirectory || 'app/components/',
       'serviceDirectory': this.options.serviceDirectory || 'app/components/',
       'basePath': this.options.basePath || 'app',

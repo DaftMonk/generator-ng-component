@@ -21,8 +21,9 @@ Generator.prototype.prompting = function askFor() {
   }, {
     name: 'dir',
     message: 'Where would you like to create this component?',
-    default: self.config.get('routeDirectory')
-  }];
+    default: self.config.get('componentDirectory')
+  }
+	];
 
   this.prompt(prompts, function (props) {
     self.scriptAppName = props.moduleName || self.scriptAppName;
