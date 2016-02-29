@@ -5,8 +5,6 @@ angular.module('<%= scriptAppName %>')
     $stateProvider
       .state('<%= name %>', {
         url: '<%= route %>',
-        templateUrl: '<%= htmlUrl %>',
-        controller: '<%= classedName %>Controller'<% if(hasFilter('es6')) { %>,
-        controllerAs: 'vm'<% } %>
+        template: '<<%= kebabName %>></<%= kebabName %>>'
       });
   });

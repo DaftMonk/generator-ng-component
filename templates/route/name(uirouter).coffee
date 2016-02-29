@@ -4,5 +4,4 @@ angular.module '<%= scriptAppName %>'
 .config ($stateProvider) ->
   $stateProvider.state '<%= name %>',
     url: '<%= route %>'
-    templateUrl: '<%= htmlUrl %>'
-    controller: '<%= classedName %>Controller'
+    template: '<<%= kebabName %>></<%= kebabName %>>'

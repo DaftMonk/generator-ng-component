@@ -1,16 +1,19 @@
 'use strict';
 (function(){
 <% if(hasFilter('es6')) { %>
-class <%= classedName %>Controller {
+class <%= classedName %>Component {
   constructor() {
     this.message = 'Hello';
   }
 }<% } else { %>
-function <%= classedName %>Controller($scope) {
+function <%= classedName %>Component($scope) {
   $scope.message = 'Hello';
 }<% } %>
 
 angular.module('<%= scriptAppName %>')
-  .controller('<%= classedName %>Controller', <%= classedName %>Controller);
+  .component('<%= classedName %>Component', {
+    templateUrl: '<%= htmlUrl %>',
+    controller: <%= classedName %>Component
+  });
 
 })();

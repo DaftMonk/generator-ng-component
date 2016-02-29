@@ -3,5 +3,4 @@
 angular.module '<%= scriptAppName %>'
 .config ($routeProvider) ->
   $routeProvider.when '<%= route %>',
-    templateUrl: '<%= htmlUrl %>'
-    controller: '<%= classedName %>Controller'
+    template: '<<%= kebabName %>></<%= kebabName %>>'
