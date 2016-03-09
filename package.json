@@ -1,6 +1,6 @@
 {
   "name": "generator-ng-component",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Yeoman generator",
   "license": "MIT",
   "main": "app/index.js",
@@ -10,8 +10,12 @@
     "email": "",
     "url": "https://github.com/DaftMonk"
   },
+  "contributors": [
+    "Andrew Koroluk <koroluka@gmail.com> (http://andrewk.me/)",
+    "Cody Mize <me@codymize.com> (http://codymize.com/)"
+  ],
   "engines": {
-    "node": ">=0.10.0"
+    "node": ">=4.4.0"
   },
   "scripts": {
     "test": "mocha"
@@ -27,7 +31,7 @@
   },
   "devDependencies": {
     "chai": "^1.9.1",
-    "grunt": "^0.4.4",
+    "grunt": "^0.4.5",
     "grunt-contrib-jshint": "^0.10.0",
     "grunt-contrib-watch": "^0.6.1",
     "grunt-mocha-test": "^0.10.2",
