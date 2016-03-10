@@ -1,3 +1,12 @@
+<a name="0.2.1"></a>
+### 0.2.1 (2016-03-09)
+
+
+### Bug Fixes
+
+* **route:** don't default to creating a new module, fix component registration name ([15e5507](https://github.com/DaftMonk/generator-ng-component/commit/15e5507))
+
+
 <a name="0.2.0"></a>
 ### 0.2.0 (2016-03-09)
 
