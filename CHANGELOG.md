@@ -1,3 +1,31 @@
+<a name="0.2.0"></a>
+### 0.2.0 (2016-03-09)
+
+
+### Notable Changes
+
+* Controllers are now appended with `Controller` instead of `Ctrl`
+* New Component subgenerator
+* If a `ts` extention is present instead of `js`, the generator will output `.ts` files
+* If a `modulePrompt` config property is truthy, subgenerators will ask for a module name the Angular component should be bound to.
+* The route subgenerator now uses an Angular Component (Note: If you're using Angular 1.3/1.4, You can use the [toddmotto/angular-component](https://github.com/toddmotto/angular-component) polyfill)
+
+
+#### Features
+
+* **gen:**
+  * prompt for module name when `config.modulePrompt` ([3bd75b3](https://github.com/DaftMonk/generator-ng-component/commit/3bd75b3))
+  * make .ts files ([52e2bea](https://github.com/DaftMonk/generator-ng-component/commit/52e2bea))
+* **route:**
+  * use a class and controllerAs if es6 filter present ([678c01f](https://github.com/DaftMonk/generator-ng-component/commit/678c01f))
+  * change to use component ([3a8b2c7](https://github.com/DaftMonk/generator-ng-component/commit/3a8b2c7))
+* **component:** generate component for angular 1.5 ([a8eb002](https://github.com/DaftMonk/generator-ng-component/commit/a8eb002))
+
+#### Chore
+
+* **gen:** update yeoman-generator to `~0.20.3` ([51c560a](https://github.com/DaftMonk/generator-ng-component/commit/51c560a))
+
+
 <a name="0.1.1"></a>
 ### 0.1.1 (2015-09-06)
 
