@@ -39,14 +39,7 @@ Generator.prototype.prompting = function askFor() {
 };
 
 Generator.prototype.writing = function createFiles() {
-  var extensions = this.config.get('extensions');
   var basePath = this.config.get('basePath') || '';
   this.htmlUrl = ngUtil.relativeUrl(basePath, path.join(this.dir, this.name + '.html'));
-  ngUtil.copyTemplates(this, 'route', null, null, function(dest) {
-    if(extensions.indexOf('ts') > -1 && dest.indexOf('.json') === -1) {
-      dest = dest.replace('.js', '.ts');
-    }
-
-    return dest;
-  });
+  ngUtil.copyTemplates(this, 'route');
 };

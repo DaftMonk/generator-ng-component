@@ -1,4 +1,5 @@
 'use strict';
+var _ = require('lodash');
 var path = require('path');
 var fs = require('fs');
 
@@ -103,33 +104,41 @@ function templateIsUsable (processedName, self) {
   return false;
 }
 
-function defaultIteratee(dest) {
-  return dest;
-}
-
-function copyTemplates(self, type, templateDir, configName, iteratee) {
-  if(!iteratee) { iteratee = defaultIteratee; }
+function copyTemplates(self, type, templateDir, configName) {
   templateDir = templateDir || path.join(self.sourceRoot(), type);
   configName = configName || type + 'Templates';
 
   if(self.config.get(configName)) {
     templateDir = path.join(process.cwd(), self.config.get(configName));
   }
-  fs.readdirSync(templateDir)
-    .forEach(function(template) {
-      var processedName = createFileName(template, self.name);
 
+  var useTypeScript = self.config.get('extensions').indexOf('ts') > -1;
+
+  var files = _(fs.readdirSync(templateDir))
+    .map(function(template) {
+      var processedName = createFileName(template, self.name);
       var fileName = processedName.name;
       var templateFile = path.join(templateDir, template);
-
-      if(templateIsUsable(processedName, self)) {
-        var dest = path.join(self.dir, fileName);
-
-        dest = iteratee(dest);
-
-        self.fs.copyTpl(templateFile, dest, self);
+      var dest = path.join(self.dir, fileName);
+      if(useTypeScript && dest.indexOf('.json') === -1) {
+        dest = dest.replace('.js', '.ts');
       }
-    });
+
+      return {
+        processedName: processedName,
+        fileName: fileName,
+        templateFile: templateFile,
+        dest: dest
+      };
+    })
+    .filter(function(templateObj) {
+      return templateIsUsable(templateObj.processedName, self);
+    })
+    .value();
+
+  files.forEach(function(templateObj) {
+    self.fs.copyTpl(templateObj.templateFile, templateObj.dest, self);
+  });
 };
 
 function relativeUrl(basePath, targetPath) {
