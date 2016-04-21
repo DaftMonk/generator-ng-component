@@ -1,3 +1,12 @@
+<a name="0.2.2"></a>
+### 0.2.2 (2016-04-21)
+
+
+### Bug Fixes
+
+* **gen:** allow every generator to use `.ts` ([680c45c](https://github.com/DaftMonk/generator-ng-component/commit/680c45c))
+
+
 <a name="0.2.1"></a>
 ### 0.2.1 (2016-03-09)
 
