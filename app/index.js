@@ -4,7 +4,7 @@ var path = require('path');
 var yeoman = require('yeoman-generator');
 var chalk = require('chalk');
 
-var NgComponentGenerator = yeoman.generators.Base.extend({
+var NgComponentGenerator = yeoman.Base.extend({
 
   initializing: function () {
     if (!this.options['skip-message']) {

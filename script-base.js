@@ -10,7 +10,8 @@ var ngUtils = require('./util.js');
 lodash.mixin(s.exports());
 
 var Generator = module.exports = function Generator() {
-  yeoman.generators.NamedBase.apply(this, arguments);
+  yeoman.Base.apply(this, arguments);
+  this.argument('name', { type: String, required: false });
 
   this.lodash = lodash;
 
@@ -48,4 +49,4 @@ var Generator = module.exports = function Generator() {
   this.sourceRoot(path.join(__dirname, '/templates'));
 };
 
-util.inherits(Generator, yeoman.generators.NamedBase);
+util.inherits(Generator, yeoman.Base);
