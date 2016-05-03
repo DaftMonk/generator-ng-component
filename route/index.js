@@ -14,7 +14,6 @@ Generator.prototype.prompting = function askFor() {
   var self = this;
   var name = this.name;
 
-  var done = this.async();
   var prompts = [{
     name: 'moduleName',
     message: 'What module name would you like to use?',
@@ -30,11 +29,10 @@ Generator.prototype.prompting = function askFor() {
     default: '/' + name
   }];
 
-  this.prompt(prompts, function (props) {
+  return this.prompt(prompts).then(function (props) {
     self.scriptAppName = props.moduleName || self.scriptAppName;
     self.route = props.route;
     self.dir = path.join(props.dir, self.name);
-    done();
   });
 };
 

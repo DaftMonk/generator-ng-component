@@ -12,7 +12,6 @@ util.inherits(Generator, ScriptBase);
 
 Generator.prototype.prompting = function askFor() {
   var self = this;
-  var done = this.async();
 
   var prompts = [{
     name: 'moduleName',
@@ -30,11 +29,10 @@ Generator.prototype.prompting = function askFor() {
     default: true
   }];
 
-  this.prompt(prompts, function (props) {
+  return this.prompt(prompts).then(function (props) {
     self.scriptAppName = props.moduleName || self.scriptAppName;
     self.dir = path.join(props.dir, self.name);
     self.complex = props.complex;
-    done();
   });
 };
 
