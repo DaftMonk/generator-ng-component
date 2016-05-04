@@ -1,3 +1,12 @@
+<a name="0.3.0"></a>
+### 0.3.0 (2016-05-04)
+
+
+### Notable Changes
+
+The user shouldn't see much difference with this release. Some Yeoman packages were updated, and deprecations fixed. We also now test Node 4, 5, & 0.12 instead of just 0.10.
+
+
 <a name="0.2.2"></a>
 ### 0.2.2 (2016-04-21)
 
