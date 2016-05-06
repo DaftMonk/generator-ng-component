@@ -17,7 +17,7 @@ Generator.prototype.prompting = function askFor() {
   var prompts = [{
     name: 'moduleName',
     message: 'What module name would you like to use?',
-    default: self.scriptAppName,
+    default: self.scriptAppName + '.' + self.name,
     when: function() {return self.config.get('modulePrompt');}
   }, {
     name: 'dir',
