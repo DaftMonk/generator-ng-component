@@ -16,7 +16,7 @@ var Generator = module.exports = function Generator() {
   this.lodash = lodash;
 
   if(!process.env.CI) {
-    yoCheckPromise = genUtils.runCmd('yo --version').then(stdout => {
+    yoCheckPromise = genUtils.runCmd('yo --version').then(function(stdout) {
       if(!semver.satisfies(semver.clean(stdout), '>= 1.7.1')) {
         throw new Error('ERROR: You need to update yo to at least 1.7.1 (npm i -g yo)');
       }
