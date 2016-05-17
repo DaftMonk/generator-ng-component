@@ -5,14 +5,11 @@ describe('Component: <%= classedName %>Component', function () {
   // load the controller's module
   beforeEach(module('<%= scriptAppName %>'));
 
-  var <%= classedName %>Component, scope;
+  var <%= classedName %>Component;
 
   // Initialize the controller and a mock scope
-  beforeEach(inject(function ($componentController, $rootScope) {
-    scope = $rootScope.$new();
-    <%= classedName %>Component = $componentController('<%= classedName %>Component', {
-      $scope: scope
-    });
+  beforeEach(inject(function ($componentController) {
+    <%= classedName %>Component = $componentController('<%= classedName %>Component', {});
   }));
 
   it('should ...', function () {<% if (hasFilter('jasmine')) { %>

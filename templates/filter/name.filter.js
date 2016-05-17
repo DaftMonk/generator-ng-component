@@ -1,8 +1,11 @@
 'use strict';
 
+function <%= cameledName %>Filter() {
+  return function (input) {
+    return '<%= cameledName %> filter: ' + input;
+  };
+}
+
+
 angular.module('<%= scriptAppName %>')
-  .filter('<%= cameledName %>', function () {
-    return function (input) {
-      return '<%= cameledName %> filter: ' + input;
-    };
-  });
+  .filter('<%= cameledName %>', <%= cameledName %>Filter);

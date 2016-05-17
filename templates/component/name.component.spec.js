@@ -5,14 +5,11 @@ describe('Component: <%= cameledName %>', function () {
   // load the component's module
   beforeEach(module('<%= scriptAppName %>'));
 
-  var <%= cameledName %>Component, scope;
+  var <%= cameledName %>Component;
 
   // Initialize the component and a mock scope
-  beforeEach(inject(function ($componentController, $rootScope) {
-    scope = $rootScope.$new();
-    <%= cameledName %>Component = $componentController('<%= cameledName %>', {
-      $scope: scope
-    });
+  beforeEach(inject(function ($componentController) {
+    <%= cameledName %>Component = $componentController('<%= cameledName %>', {});
   }));
 
   it('should ...', function () {<% if (hasFilter('jasmine')) { %>
