@@ -9,7 +9,7 @@ describe('Component: <%= classedName %>Component', function () {
 
   // Initialize the controller and a mock scope
   beforeEach(inject(function ($componentController) {
-    <%= classedName %>Component = $componentController('<%= classedName %>Component', {});
+    <%= classedName %>Component = $componentController('<%= name %>', {});
   }));
 
   it('should ...', function () {<% if (hasFilter('jasmine')) { %>
