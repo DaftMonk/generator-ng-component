@@ -1,4 +1,5 @@
 'use strict';
+
 (function(){
 <% if(hasFilter('es6')) { %>
 class <%= classedName %>Component {
