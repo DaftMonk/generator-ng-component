@@ -1,3 +1,13 @@
+<a name="0.3.2"></a>
+### 0.3.2 (2016-06-30)
+
+
+### Notable Changes
+
+* Updated dependencies
+* Bumped Node version to 4.4.6
+
+
 <a name="0.3.1"></a>
 ### 0.3.1 (2016-06-30)
 

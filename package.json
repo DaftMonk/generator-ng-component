@@ -1,6 +1,6 @@
 {
   "name": "generator-ng-component",
-  "version": "0.3.1",
+  "version": "0.3.2",
   "description": "Yeoman generator",
   "license": "MIT",
   "main": "app/index.js",
@@ -15,7 +15,7 @@
     "Cody Mize <me@codymize.com> (http://codymize.com/)"
   ],
   "engines": {
-    "node": ">=4.4.0"
+    "node": ">=4.4.6"
   },
   "scripts": {
     "test": "mocha"
