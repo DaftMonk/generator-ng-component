@@ -1,16 +1,15 @@
 'use strict';
-var util = require('util');
-var path = require('path');
-var lodash = require('lodash');
-var s = require('underscore.string');
-var yeoman = require('yeoman-generator');
-var ngUtils = require('./util.js');
-var Promise = require('bluebird');
-var exec = require('child_process').exec;
-var semver = require('semver');
+import util from 'util';
+import path from 'path';
+import _ from 'lodash';
+import s from 'underscore.string';
+import Promise from 'bluebird';
+import {exec} from 'child_process';
+import semver from 'semver';
+import ngUtils from './util.js';
 
 // extend lodash with underscore.string
-lodash.mixin(s.exports());
+_.mixin(s.exports());
 
 /**
  * Run the given command in a child process
@@ -30,11 +29,10 @@ function runCmd(cmd) {
   });
 }
 
-var Generator = module.exports = function Generator() {
-  yeoman.Base.apply(this, arguments);
+export default function() {
   this.argument('name', { type: String, required: false });
 
-  this.lodash = lodash;
+  this.lodash = _;
 
   var yoCheckPromise;
 
@@ -54,26 +52,20 @@ var Generator = module.exports = function Generator() {
   } catch (e) {
     this.appname = path.basename(process.cwd());
   }
-  this.appname = lodash.slugify(lodash.humanize(this.appname));
-  this.scriptAppName = this.config.get('moduleName') || lodash.camelize(this.appname) + ngUtils.appName(this);
+  this.appname = _.slugify(_.humanize(this.appname));
+  this.scriptAppName = this.config.get('moduleName') || _.camelize(this.appname) + ngUtils.appName(this);
 
-  this.cameledName = lodash.camelize(this.name);
-  this.classedName = lodash.classify(this.name);
-  this.kebabName = lodash.kebabCase(this.name);
+  this.cameledName = _.camelize(this.name);
+  this.classedName = _.classify(this.name);
+  this.kebabName = _.kebabCase(this.name);
 
-  this.hasFilter = function(filter) {
-    return this.config.get('filters').indexOf(filter) !== -1;
-  }.bind(this);
+  this.hasFilter = filter => this.config.get('filters').indexOf(filter) !== -1;
 
   // dynamic assertion statements
-  this.expect = function() {
-    return this.hasFilter('expect') ? 'expect(' : '';
-  }.bind(this);
-  this.to = function() {
-    return this.hasFilter('expect') ? ').to' : '.should';
-  }.bind(this);
+  this.expect = () => this.hasFilter('expect') ? 'expect(' : '';
+  this.to = () => this.hasFilter('expect') ? ').to' : '.should';
 
-  if (typeof this.env.options.appPath === 'undefined') {
+  if(typeof this.env.options.appPath === 'undefined') {
     try {
       this.env.options.appPath = require(path.join(process.cwd(), 'bower.json')).appPath;
     } catch (e) {}
@@ -84,5 +76,3 @@ var Generator = module.exports = function Generator() {
 
   return yoCheckPromise;
 };
-
-util.inherits(Generator, yeoman.Base);

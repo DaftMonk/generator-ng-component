@@ -1,34 +1,38 @@
 'use strict';
-var path = require('path');
-var util = require('util');
-var ngUtil = require('../util');
-var ScriptBase = require('../script-base.js');
+import path from 'path';
+import {Base} from 'yeoman-generator';
+import chalk from 'chalk';
+import ngUtil from '../util';
+import scriptBase from '../script-base.js';
 
-var Generator = module.exports = function Generator() {
-  ScriptBase.apply(this, arguments);
-};
+class Generator extends Base {
+  constructor(...args) {
+    super(...args);
 
-util.inherits(Generator, ScriptBase);
+    scriptBase.call(this);
+  }
 
-Generator.prototype.prompting = function askFor() {
-  var self = this;
-  var prompts = [{
-    name: 'moduleName',
-    message: 'What module name would you like to use?',
-    default: self.scriptAppName + '.' + self.name,
-    when: function() {return self.config.get('modulePrompt');}
-  }, {
-    name: 'dir',
-    message: 'Where would you like to create this decorator?',
-    default: self.config.get('serviceDirectory')
-  }];
+  prompting() {
+    var prompts = [{
+      name: 'moduleName',
+      message: 'What module name would you like to use?',
+      default: `${this.scriptAppName}.${this.name}`,
+      when: () => this.config.get('modulePrompt')
+    }, {
+      name: 'dir',
+      message: 'Where would you like to create this decorator?',
+      default: this.config.get('serviceDirectory')
+    }];
 
-  return this.prompt(prompts).then(function (props) {
-    self.scriptAppName = props.moduleName || self.scriptAppName;
-    self.dir = path.join(props.dir, self.name);
-  });
-};
+    return this.prompt(prompts).then(props => {
+      this.scriptAppName = props.moduleName || this.scriptAppName;
+      this.dir = path.join(props.dir, this.name);
+    });
+  }
 
-Generator.prototype.writing = function createFiles() {
-  ngUtil.copyTemplates(this, 'decorator');
-};
+  writing() {
+    ngUtil.copyTemplates(this, 'decorator');
+  }
+}
+
+module.exports = Generator;

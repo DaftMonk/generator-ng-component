@@ -1,12 +1,12 @@
 /*global describe, beforeEach, it */
 'use strict';
-var path = require('path');
-var helpers = require('yeoman-test');
-var assert = require('assert');
-var yoAssert = require('yeoman-assert');
-var fs = require('fs');
+import path from 'path';
+import helpers from 'yeoman-test';
+import assert from 'assert';
+import yoAssert from 'yeoman-assert';
+import fs from 'fs';
 
-describe('ng-component generator', function () {
+describe('ng-component generator', function() {
   var gen;
 
   function generatorTest(generatorType, name, mockPrompt, callback) {
@@ -15,15 +15,15 @@ describe('ng-component generator', function () {
     ngGenerator = helpers.createGenerator('ng-component:' + generatorType, deps, [name]);
 
     helpers.mockPrompt(ngGenerator, mockPrompt);
-    ngGenerator.run(function () {
+    ngGenerator.run(function() {
       callback();
     });
   }
 
   describe('with default configuration', function() {
-    beforeEach(function (done) {
-      helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
-        if (err) {
+    beforeEach(function(done) {
+      helpers.testDirectory(path.join(__dirname, 'temp'), err => {
+        if(err) {
           return done(err);
         }
 
@@ -32,11 +32,11 @@ describe('ng-component generator', function () {
           '../../generators/app'
         ]);
         done();
-      }.bind(this));
+      });
     });
 
-    describe('Route', function () {
-      it('should generate a new route', function (done) {
+    describe('Route', function() {
+      it('should generate a new route', function(done) {
         generatorTest('route', 'foo', { dir: 'app/components/', route: '/foo'}, function() {
           yoAssert.file([
             path.join('app/components/foo', 'foo.html'),
@@ -50,8 +50,8 @@ describe('ng-component generator', function () {
       });
     });
 
-    describe('Directive', function () {
-      it('should generate a new complex directive', function (done) {
+    describe('Directive', function() {
+      it('should generate a new complex directive', function(done) {
         generatorTest('directive', 'foo', { dir: 'app/components/', complex: true }, function() {
           yoAssert.file([
             path.join('app/components/foo', 'foo.html'),
@@ -63,7 +63,7 @@ describe('ng-component generator', function () {
         });
       });
 
-      it('should generate a new simple directive', function (done) {
+      it('should generate a new simple directive', function(done) {
         generatorTest('directive', 'foo', { dir: 'app/components/', complex: false }, function() {
           yoAssert.file([
             path.join('app/components/foo', 'foo.directive.js'),
@@ -78,8 +78,8 @@ describe('ng-component generator', function () {
       });
     });
 
-    describe('Service', function () {
-      it('should generate a new service', function (done) {
+    describe('Service', function() {
+      it('should generate a new service', function(done) {
         generatorTest('service', 'foo', { dir: 'app/components/' }, function() {
           yoAssert.file([
             path.join('app/components/foo', 'foo.service.js'),
@@ -90,8 +90,8 @@ describe('ng-component generator', function () {
       });
     });
 
-    describe('Factory', function () {
-      it('should generate a new factory', function (done) {
+    describe('Factory', function() {
+      it('should generate a new factory', function(done) {
         generatorTest('factory', 'foo', { dir: 'app/components/' }, function() {
           yoAssert.file([
             path.join('app/components/foo', 'foo.service.js'),
@@ -102,8 +102,8 @@ describe('ng-component generator', function () {
       });
     });
 
-    describe('Filter', function () {
-      it('should generate a new filter', function (done) {
+    describe('Filter', function() {
+      it('should generate a new filter', function(done) {
         generatorTest('filter', 'foo', { dir: 'app/components/' }, function() {
           yoAssert.file([
             path.join('app/components/foo', 'foo.filter.js'),
@@ -114,8 +114,8 @@ describe('ng-component generator', function () {
       });
     });
 
-    describe('Component', function () {
-      it('should generate a new component', function (done) {
+    describe('Component', function() {
+      it('should generate a new component', function(done) {
         generatorTest('component', 'foo', { dir: 'app/components/' }, function() {
           yoAssert.file([
             path.join('app/components/foo', 'foo.component.js'),
@@ -128,9 +128,9 @@ describe('ng-component generator', function () {
   });
 
   describe('with custom configuration', function() {
-    beforeEach(function (done) {
-      helpers.testDirectory(path.join(__dirname, 'temp'), function (err) {
-        if (err) {
+    beforeEach(function(done) {
+      helpers.testDirectory(path.join(__dirname, 'temp'), err => {
+        if(err) {
           return done(err);
         }
 
@@ -139,12 +139,12 @@ describe('ng-component generator', function () {
           '../../generators/app'
         ]);
         done();
-      }.bind(this));
+      });
     });
 
-    describe('Route', function () {
-      it('should generate a new route', function (done) {
-        generatorTest('route', 'foo', { dir: 'client/app/', route: '/foo'}, function() {
+    describe('Route', function() {
+      it('should generate a new route', function(done) {
+        generatorTest('route', 'foo', { dir: 'client/app/', route: '/foo' }, function() {
           yoAssert.file([
             path.join('client/app/foo', 'foo.jade'),
             path.join('client/app/foo', 'foo.less'),
@@ -157,8 +157,8 @@ describe('ng-component generator', function () {
       });
     });
 
-    describe('Directive', function () {
-      it('should generate a new complex directive', function (done) {
+    describe('Directive', function() {
+      it('should generate a new complex directive', function(done) {
         generatorTest('directive', 'foo', { dir: 'client/app/', complex: true }, function() {
           yoAssert.file([
             path.join('client/app/foo', 'foo.jade'),
@@ -170,7 +170,7 @@ describe('ng-component generator', function () {
         });
       });
 
-      it('should generate a new simple directive', function (done) {
+      it('should generate a new simple directive', function(done) {
         generatorTest('directive', 'foo', { dir: 'client/app/', complex: false }, function() {
           yoAssert.file([
             path.join('client/app/foo', 'foo.directive.coffee'),
@@ -185,8 +185,8 @@ describe('ng-component generator', function () {
       });
     });
 
-    describe('Service', function () {
-      it('should generate a new service', function (done) {
+    describe('Service', function() {
+      it('should generate a new service', function(done) {
         generatorTest('service', 'foo', { dir: 'client/app/' }, function() {
           yoAssert.file([
             path.join('client/app/foo', 'foo.service.coffee'),
@@ -197,8 +197,8 @@ describe('ng-component generator', function () {
       });
     });
 
-    describe('Factory', function () {
-      it('should generate a new factory', function (done) {
+    describe('Factory', function() {
+      it('should generate a new factory', function(done) {
         generatorTest('factory', 'foo', { dir: 'client/app/' }, function() {
           yoAssert.file([
             path.join('client/app/foo', 'foo.service.coffee'),
@@ -209,8 +209,8 @@ describe('ng-component generator', function () {
       });
     });
 
-    describe('Filter', function () {
-      it('should generate a new filter', function (done) {
+    describe('Filter', function() {
+      it('should generate a new filter', function(done) {
         generatorTest('filter', 'foo', { dir: 'client/app/' }, function() {
           yoAssert.file([
             path.join('client/app/foo', 'foo.filter.coffee'),
@@ -221,8 +221,8 @@ describe('ng-component generator', function () {
       });
     });
 
-    describe('Controller', function () {
-      it('should generate a new controller', function (done) {
+    describe('Controller', function() {
+      it('should generate a new controller', function(done) {
         generatorTest('controller', 'foo', { dir: 'client/app/' }, function() {
           yoAssert.file([
             path.join('client/app/foo', 'foo.controller.coffee'),
@@ -233,8 +233,8 @@ describe('ng-component generator', function () {
       });
     });
 
-    describe('Decorator', function () {
-      it('should generate a new decorator', function (done) {
+    describe('Decorator', function() {
+      it('should generate a new decorator', function(done) {
         generatorTest('decorator', 'foo', { dir: 'client/app/' }, function() {
           yoAssert.file([
             path.join('client/app/foo', 'foo.decorator.coffee')
@@ -244,8 +244,8 @@ describe('ng-component generator', function () {
       });
     });
 
-    describe('Provider', function () {
-      it('should generate a new provider', function (done) {
+    describe('Provider', function() {
+      it('should generate a new provider', function(done) {
         generatorTest('provider', 'foo', { dir: 'client/app/' }, function() {
           yoAssert.file([
             path.join('client/app/foo', 'foo.service.coffee'),
@@ -256,8 +256,8 @@ describe('ng-component generator', function () {
       });
     });
 
-    describe('Component', function () {
-      it('should generate a new component', function (done) {
+    describe('Component', function() {
+      it('should generate a new component', function(done) {
         generatorTest('component', 'foo', { dir: 'app/components/' }, function() {
           yoAssert.file([
             path.join('app/components/foo', 'foo.component.coffee'),

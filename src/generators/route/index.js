@@ -1,43 +1,45 @@
 'use strict';
-var path = require('path');
-var util = require('util');
-var ngUtil = require('../util');
-var ScriptBase = require('../script-base.js');
+import path from 'path';
+import {Base} from 'yeoman-generator';
+import chalk from 'chalk';
+import ngUtil from '../util';
+import scriptBase from '../script-base.js';
 
-var Generator = module.exports = function Generator() {
-  ScriptBase.apply(this, arguments);
-};
+class Generator extends Base {
+  constructor(...args) {
+    super(...args);
 
-util.inherits(Generator, ScriptBase);
+    scriptBase.call(this);
+  }
 
-Generator.prototype.prompting = function askFor() {
-  var self = this;
-  var name = this.name;
+  prompting() {
+    var prompts = [{
+      name: 'moduleName',
+      message: 'What module name would you like to use?',
+      default: `${this.scriptAppName}.${this.name}`,
+      when: () => this.config.get('modulePrompt')
+    }, {
+      name: 'dir',
+      message: 'Where would you like to create this route?',
+      default: this.config.get('routeDirectory')
+    }, {
+      name: 'route',
+      message: 'What will the url of your route be?',
+      default: '/' + this.name
+    }];
 
-  var prompts = [{
-    name: 'moduleName',
-    message: 'What module name would you like to use?',
-    default: self.scriptAppName,
-    when: function() {return self.config.get('modulePrompt');}
-  }, {
-    name: 'dir',
-    message: 'Where would you like to create this route?',
-    default: self.config.get('routeDirectory')
-  }, {
-    name: 'route',
-    message: 'What will the url of your route be?',
-    default: '/' + name
-  }];
+    return this.prompt(prompts).then(props => {
+      this.scriptAppName = props.moduleName || this.scriptAppName;
+      this.route = props.route;
+      this.dir = path.join(props.dir, this.name);
+    });
+  }
 
-  return this.prompt(prompts).then(function (props) {
-    self.scriptAppName = props.moduleName || self.scriptAppName;
-    self.route = props.route;
-    self.dir = path.join(props.dir, self.name);
-  });
-};
+  writing() {
+    var basePath = this.config.get('basePath') || '';
+    this.htmlUrl = ngUtil.relativeUrl(basePath, path.join(this.dir, this.name + '.html'));
+    ngUtil.copyTemplates(this, 'route');
+  }
+}
 
-Generator.prototype.writing = function createFiles() {
-  var basePath = this.config.get('basePath') || '';
-  this.htmlUrl = ngUtil.relativeUrl(basePath, path.join(this.dir, this.name + '.html'));
-  ngUtil.copyTemplates(this, 'route');
-};
+module.exports = Generator;
