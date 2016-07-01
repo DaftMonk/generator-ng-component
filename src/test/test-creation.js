@@ -11,7 +11,7 @@ describe('ng-component generator', function () {
 
   function generatorTest(generatorType, name, mockPrompt, callback) {
     var ngGenerator;
-    var deps = [path.join('../..', generatorType)];
+    var deps = [path.join('../../generators/', generatorType)];
     ngGenerator = helpers.createGenerator('ng-component:' + generatorType, deps, [name]);
 
     helpers.mockPrompt(ngGenerator, mockPrompt);
@@ -29,7 +29,7 @@ describe('ng-component generator', function () {
 
         fs.writeFileSync(path.join(__dirname, 'temp', '.yo-rc.json'), fs.readFileSync('../fixtures/.yo-rc.default.json'));
         gen = helpers.createGenerator('ng-component:app', [
-          '../../app'
+          '../../generators/app'
         ]);
         done();
       }.bind(this));
@@ -136,7 +136,7 @@ describe('ng-component generator', function () {
 
         fs.writeFileSync(path.join(__dirname, 'temp', '.yo-rc.json'), fs.readFileSync('../fixtures/.yo-rc.custom.json'));
         gen = helpers.createGenerator('ng-component:app', [
-          '../../app'
+          '../../generators/app'
         ]);
         done();
       }.bind(this));

@@ -80,7 +80,7 @@ var Generator = module.exports = function Generator() {
     this.env.options.appPath = this.env.options.appPath || 'app';
   }
 
-  this.sourceRoot(path.join(__dirname, '/templates'));
+  this.sourceRoot(path.join(__dirname, '..', '/templates'));
 
   return yoCheckPromise;
 };
