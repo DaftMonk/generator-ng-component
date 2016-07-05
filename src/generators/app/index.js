@@ -1,19 +1,20 @@
 'use strict';
-var util = require('util');
-var path = require('path');
-var yeoman = require('yeoman-generator');
-var chalk = require('chalk');
+import {Base} from 'yeoman-generator';
+import chalk from 'chalk';
 
-var NgComponentGenerator = yeoman.Base.extend({
+class Generator extends Base {
+  constructor(...args) {
+    super(...args);
+  }
 
-  initializing: function () {
-    if (!this.options['skip-message']) {
+  initializing() {
+    if(!this.options['skip-message']) {
       this.log(chalk.magenta('You\'re using the fantastic NgComponent generator.\n'));
       this.log(chalk.magenta('Initializing yo-rc.json configuration.\n'));
     }
-  },
+  }
 
-  configuring: function () {
+  configuring() {
     var config = {
       'routeDirectory': this.options.routeDirectory || 'app/components/',
       'directiveDirectory': this.options.directiveDirectory || 'app/components/',
@@ -22,8 +23,7 @@ var NgComponentGenerator = yeoman.Base.extend({
       'serviceDirectory': this.options.serviceDirectory || 'app/components/',
       'basePath': this.options.basePath || 'app',
       'moduleName': this.options.moduleName || '',
-      'modulePrompt': this.options.hasOwnProperty('modulePrompt') ?
-        this.options.modulePrompt : true,
+      'modulePrompt': this.options.hasOwnProperty('modulePrompt') ? this.options.modulePrompt : true,
       'filters': this.options.filters || ['uirouter', 'jasmine'],
       'extensions': this.options.extensions || ['js', 'html', 'scss'],
       'directiveSimpleTemplates': this.options.directiveSimple || '',
@@ -38,13 +38,13 @@ var NgComponentGenerator = yeoman.Base.extend({
       'routeTemplates': this.options.route || ''
     };
 
-    if (this.options.forceConfig) {
+    if(this.options.forceConfig) {
       this.config.set(config);
       this.config.forceSave();
     } else {
       this.config.defaults(config);
     }
   }
-});
+}
 
-module.exports = NgComponentGenerator;
+module.exports = Generator;
