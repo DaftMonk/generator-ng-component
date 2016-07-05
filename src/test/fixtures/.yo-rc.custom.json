@@ -6,10 +6,12 @@
     "filterDirectory": "client/app/",
     "serviceDirectory": "client/app/",
     "filters": [
-      "ngroute"
+      "ngroute",
+      "es6"
     ],
     "extensions": [
-      "coffee",
+      "js",
+      "ts",
       "jade",
       "less"
     ],

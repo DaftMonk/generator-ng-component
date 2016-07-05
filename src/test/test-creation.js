@@ -2,271 +2,339 @@
 'use strict';
 import path from 'path';
 import helpers from 'yeoman-test';
-import assert from 'assert';
 import yoAssert from 'yeoman-assert';
 import fs from 'fs';
+import Promise from 'bluebird';
+Promise.promisifyAll(fs);
 
-describe('ng-component generator', function() {
-  var gen;
+const TEST_DIR = __dirname;
+const DEBUG = process.env.DEBUG || false;
 
-  function generatorTest(generatorType, name, mockPrompt, callback) {
-    var ngGenerator;
-    var deps = [path.join('../../generators/', generatorType)];
-    ngGenerator = helpers.createGenerator('ng-component:' + generatorType, deps, [name]);
+/**
+ * Copy file from src to dest
+ * @param {string} src
+ * @param {string} dest
+ * @returns {Promise}
+ */
+export function copyAsync(src, dest) {
+  return fs.readFileAsync(src)
+    .then(data => fs.writeFileAsync(dest, data));
+}
 
-    helpers.mockPrompt(ngGenerator, mockPrompt);
-    ngGenerator.run(function() {
-      callback();
-    });
-  }
+/**
+ * Run ng-fullstack generators
+ * @param {String} genName - which generator to run
+ * @param {String} name - name argument passed to generator
+ * @param {object} [opts={}]
+ * @param {object} [opts.prompts]
+ * @param {String} [opts.config='default'] - which config file to use (default/custom)
+ * @returns {Promise}
+ */
+export function runGen(genName, name, opts={}) {
+  let prompts = opts.prompts;
+  let config = opts.config || 'default';
 
-  describe('with default configuration', function() {
-    beforeEach(function(done) {
-      helpers.testDirectory(path.join(__dirname, 'temp'), err => {
-        if(err) {
-          return done(err);
+  let gen = helpers
+    .run(require.resolve(`../generators/${genName}`))
+    .inTmpDir(function(dir) {
+      // this will create a new temporary directory for each new generator run
+      var done = this.async();
+      if(DEBUG) console.log(`TEMP DIR: ${dir}`);
+
+      // symlink our dependency directories
+      return copyAsync(path.join(TEST_DIR, `fixtures/.yo-rc.${config}.json`), path.join(dir, '.yo-rc.json'))
+        .then(done);
+    })
+    .withPrompts(prompts)
+    .withArguments([name]);
+
+  return gen.toPromise();
+}
+
+describe('with default configuration', function() {
+  describe('Route', function() {
+    it('should generate a new route', function() {
+      return runGen('route', 'foo', {
+        prompts: {
+          dir: 'app/components/',
+          route: '/foo'
         }
-
-        fs.writeFileSync(path.join(__dirname, 'temp', '.yo-rc.json'), fs.readFileSync('../fixtures/.yo-rc.default.json'));
-        gen = helpers.createGenerator('ng-component:app', [
-          '../../generators/app'
+      }).then(() => {
+        yoAssert.file([
+          path.join('app/components/foo', 'foo.html'),
+          path.join('app/components/foo', 'foo.scss'),
+          path.join('app/components/foo', 'foo.controller.js'),
+          path.join('app/components/foo', 'foo.controller.spec.js'),
+          path.join('app/components/foo', 'foo.js')
         ]);
-        done();
-      });
-    });
-
-    describe('Route', function() {
-      it('should generate a new route', function(done) {
-        generatorTest('route', 'foo', { dir: 'app/components/', route: '/foo'}, function() {
-          yoAssert.file([
-            path.join('app/components/foo', 'foo.html'),
-            path.join('app/components/foo', 'foo.scss'),
-            path.join('app/components/foo', 'foo.controller.js'),
-            path.join('app/components/foo', 'foo.controller.spec.js'),
-            path.join('app/components/foo', 'foo.js')
-          ]);
-          done();
-        });
-      });
-    });
-
-    describe('Directive', function() {
-      it('should generate a new complex directive', function(done) {
-        generatorTest('directive', 'foo', { dir: 'app/components/', complex: true }, function() {
-          yoAssert.file([
-            path.join('app/components/foo', 'foo.html'),
-            path.join('app/components/foo', 'foo.scss'),
-            path.join('app/components/foo', 'foo.directive.js'),
-            path.join('app/components/foo', 'foo.directive.js')
-          ]);
-          done();
-        });
-      });
-
-      it('should generate a new simple directive', function(done) {
-        generatorTest('directive', 'foo', { dir: 'app/components/', complex: false }, function() {
-          yoAssert.file([
-            path.join('app/components/foo', 'foo.directive.js'),
-            path.join('app/components/foo', 'foo.directive.spec.js')
-          ]);
-          yoAssert.noFile([
-            path.join('app/components/foo', 'foo.scss'),
-            path.join('app/components/foo', 'foo.html')
-          ]);
-          done();
-        });
-      });
-    });
-
-    describe('Service', function() {
-      it('should generate a new service', function(done) {
-        generatorTest('service', 'foo', { dir: 'app/components/' }, function() {
-          yoAssert.file([
-            path.join('app/components/foo', 'foo.service.js'),
-            path.join('app/components/foo', 'foo.service.spec.js')
-          ]);
-          done();
-        });
-      });
-    });
-
-    describe('Factory', function() {
-      it('should generate a new factory', function(done) {
-        generatorTest('factory', 'foo', { dir: 'app/components/' }, function() {
-          yoAssert.file([
-            path.join('app/components/foo', 'foo.service.js'),
-            path.join('app/components/foo', 'foo.service.spec.js')
-          ]);
-          done();
-        });
-      });
-    });
-
-    describe('Filter', function() {
-      it('should generate a new filter', function(done) {
-        generatorTest('filter', 'foo', { dir: 'app/components/' }, function() {
-          yoAssert.file([
-            path.join('app/components/foo', 'foo.filter.js'),
-            path.join('app/components/foo', 'foo.filter.spec.js')
-          ]);
-          done();
-        });
-      });
-    });
-
-    describe('Component', function() {
-      it('should generate a new component', function(done) {
-        generatorTest('component', 'foo', { dir: 'app/components/' }, function() {
-          yoAssert.file([
-            path.join('app/components/foo', 'foo.component.js'),
-            path.join('app/components/foo', 'foo.component.spec.js')
-          ]);
-          done();
-        });
       });
     });
   });
 
-  describe('with custom configuration', function() {
-    beforeEach(function(done) {
-      helpers.testDirectory(path.join(__dirname, 'temp'), err => {
-        if(err) {
-          return done(err);
+  describe('Directive', function() {
+    it('should generate a new complex directive', function() {
+      return runGen('directive', 'foo', {
+        prompts: {
+          dir: 'app/components/',
+          complex: true
         }
-
-        fs.writeFileSync(path.join(__dirname, 'temp', '.yo-rc.json'), fs.readFileSync('../fixtures/.yo-rc.custom.json'));
-        gen = helpers.createGenerator('ng-component:app', [
-          '../../generators/app'
+      }).then(() => {
+          yoAssert.file([
+          path.join('app/components/foo', 'foo.html'),
+          path.join('app/components/foo', 'foo.scss'),
+          path.join('app/components/foo', 'foo.directive.js'),
+          path.join('app/components/foo', 'foo.directive.js')
         ]);
-        done();
       });
     });
 
-    describe('Route', function() {
-      it('should generate a new route', function(done) {
-        generatorTest('route', 'foo', { dir: 'client/app/', route: '/foo' }, function() {
-          yoAssert.file([
-            path.join('client/app/foo', 'foo.jade'),
-            path.join('client/app/foo', 'foo.less'),
-            path.join('client/app/foo', 'foo.controller.coffee'),
-            path.join('client/app/foo', 'foo.controller.spec.coffee'),
-            path.join('client/app/foo', 'foo.coffee')
-          ]);
-          done();
-        });
+    it('should generate a new simple directive', function() {
+      return runGen('directive', 'foo', {
+        prompts: {
+          dir: 'app/components/',
+          complex: false
+        }
+      }).then(() => {
+        yoAssert.file([
+          path.join('app/components/foo', 'foo.directive.js'),
+          path.join('app/components/foo', 'foo.directive.spec.js')
+        ]);
+        yoAssert.noFile([
+          path.join('app/components/foo', 'foo.scss'),
+          path.join('app/components/foo', 'foo.html')
+        ]);
+      });
+    });
+  });
+
+  describe('Service', function() {
+    it('should generate a new service', function() {
+      return runGen('service', 'foo', {
+        prompts: {
+          dir: 'app/components/'
+        }
+      }).then(() => {
+        yoAssert.file([
+          path.join('app/components/foo', 'foo.service.js'),
+          path.join('app/components/foo', 'foo.service.spec.js')
+        ]);
+      });
+    });
+  });
+
+  describe('Factory', function() {
+    it('should generate a new factory', function() {
+      return runGen('factory', 'foo', {
+        prompts: {
+          dir: 'app/components/'
+        }
+      }).then(() => {
+        yoAssert.file([
+          path.join('app/components/foo', 'foo.service.js'),
+          path.join('app/components/foo', 'foo.service.spec.js')
+        ]);
+      });
+    });
+  });
+
+  describe('Filter', function() {
+    it('should generate a new filter', function() {
+      return runGen('filter', 'foo', {
+        prompts: {
+          dir: 'app/components/'
+        }
+      }).then(() => {
+        yoAssert.file([
+          path.join('app/components/foo', 'foo.filter.js'),
+          path.join('app/components/foo', 'foo.filter.spec.js')
+        ]);
+      });
+    });
+  });
+
+  describe('Component', function() {
+    it('should generate a new component', function() {
+      return runGen('component', 'foo', {
+        prompts: {
+          dir: 'app/components/'
+        }
+      }).then(() => {
+        yoAssert.file([
+          path.join('app/components/foo', 'foo.component.js'),
+          path.join('app/components/foo', 'foo.component.spec.js')
+        ]);
+      });
+    });
+  });
+});
+
+describe('with custom configuration', function() {
+  describe('Route', function() {
+    it('should generate a new route', function() {
+      return runGen('route', 'foo', {
+        prompts: {
+          dir: 'client/app/',
+          route: '/foo'
+        },
+        config: 'custom'
+      }).then(() => {
+        yoAssert.file([
+          path.join('client/app/foo', 'foo.jade'),
+          path.join('client/app/foo', 'foo.less'),
+          path.join('client/app/foo', 'foo.controller.ts'),
+          path.join('client/app/foo', 'foo.controller.spec.ts'),
+          path.join('client/app/foo', 'foo.ts')
+        ]);
+      });
+    });
+  });
+
+  describe('Directive', function() {
+    it('should generate a new complex directive', function() {
+      return runGen('directive', 'foo', {
+        prompts: {
+          dir: 'client/app/',
+          complex: true
+        },
+        config: 'custom'
+      }).then(() => {
+        yoAssert.file([
+          path.join('client/app/foo', 'foo.jade'),
+          path.join('client/app/foo', 'foo.less'),
+          path.join('client/app/foo', 'foo.directive.ts'),
+          path.join('client/app/foo', 'foo.directive.ts')
+        ]);
       });
     });
 
-    describe('Directive', function() {
-      it('should generate a new complex directive', function(done) {
-        generatorTest('directive', 'foo', { dir: 'client/app/', complex: true }, function() {
-          yoAssert.file([
-            path.join('client/app/foo', 'foo.jade'),
-            path.join('client/app/foo', 'foo.less'),
-            path.join('client/app/foo', 'foo.directive.coffee'),
-            path.join('client/app/foo', 'foo.directive.coffee')
-          ]);
-          done();
-        });
-      });
-
-      it('should generate a new simple directive', function(done) {
-        generatorTest('directive', 'foo', { dir: 'client/app/', complex: false }, function() {
-          yoAssert.file([
-            path.join('client/app/foo', 'foo.directive.coffee'),
-            path.join('client/app/foo', 'foo.directive.spec.coffee')
-          ]);
-          yoAssert.noFile([
-            path.join('client/app/foo', 'foo.less'),
-            path.join('client/app/foo', 'foo.jade')
-          ]);
-          done();
-        });
+    it('should generate a new simple directive', function() {
+      return runGen('directive', 'foo', {
+        prompts: {
+          dir: 'client/app/',
+          complex: false
+        },
+        config: 'custom'
+      }).then(() => {
+        yoAssert.file([
+          path.join('client/app/foo', 'foo.directive.ts'),
+          path.join('client/app/foo', 'foo.directive.spec.ts')
+        ]);
+        yoAssert.noFile([
+          path.join('client/app/foo', 'foo.less'),
+          path.join('client/app/foo', 'foo.jade')
+        ]);
       });
     });
+  });
 
-    describe('Service', function() {
-      it('should generate a new service', function(done) {
-        generatorTest('service', 'foo', { dir: 'client/app/' }, function() {
-          yoAssert.file([
-            path.join('client/app/foo', 'foo.service.coffee'),
-            path.join('client/app/foo', 'foo.service.spec.coffee')
-          ]);
-          done();
-        });
+  describe('Service', function() {
+    it('should generate a new service', function() {
+      return runGen('service', 'foo', {
+        prompts: {
+          dir: 'client/app/'
+        },
+        config: 'custom'
+      }).then(() => {
+        yoAssert.file([
+          path.join('client/app/foo', 'foo.service.ts'),
+          path.join('client/app/foo', 'foo.service.spec.ts')
+        ]);
       });
     });
+  });
 
-    describe('Factory', function() {
-      it('should generate a new factory', function(done) {
-        generatorTest('factory', 'foo', { dir: 'client/app/' }, function() {
-          yoAssert.file([
-            path.join('client/app/foo', 'foo.service.coffee'),
-            path.join('client/app/foo', 'foo.service.spec.coffee')
-          ]);
-          done();
-        });
+  describe('Factory', function() {
+    it('should generate a new factory', function() {
+      return runGen('factory', 'foo', {
+        prompts: {
+          dir: 'client/app/'
+        },
+        config: 'custom'
+      }).then(() => {
+        yoAssert.file([
+          path.join('client/app/foo', 'foo.service.ts'),
+          path.join('client/app/foo', 'foo.service.spec.ts')
+        ]);
       });
     });
+  });
 
-    describe('Filter', function() {
-      it('should generate a new filter', function(done) {
-        generatorTest('filter', 'foo', { dir: 'client/app/' }, function() {
-          yoAssert.file([
-            path.join('client/app/foo', 'foo.filter.coffee'),
-            path.join('client/app/foo', 'foo.filter.spec.coffee')
-          ]);
-          done();
-        });
+  describe('Filter', function() {
+    it('should generate a new filter', function() {
+      return runGen('filter', 'foo', {
+        prompts: {
+          dir: 'client/app/'
+        },
+        config: 'custom'
+      }).then(() => {
+        yoAssert.file([
+          path.join('client/app/foo', 'foo.filter.ts'),
+          path.join('client/app/foo', 'foo.filter.spec.ts')
+        ]);
       });
     });
+  });
 
-    describe('Controller', function() {
-      it('should generate a new controller', function(done) {
-        generatorTest('controller', 'foo', { dir: 'client/app/' }, function() {
-          yoAssert.file([
-            path.join('client/app/foo', 'foo.controller.coffee'),
-            path.join('client/app/foo', 'foo.controller.spec.coffee')
-          ]);
-          done();
-        });
+  describe('Controller', function() {
+    it('should generate a new controller', function() {
+      return runGen('controller', 'foo', {
+        prompts: {
+          dir: 'client/app/'
+        },
+        config: 'custom'
+      }).then(() => {
+        yoAssert.file([
+          path.join('client/app/foo', 'foo.controller.ts'),
+          path.join('client/app/foo', 'foo.controller.spec.ts')
+        ]);
       });
     });
+  });
 
-    describe('Decorator', function() {
-      it('should generate a new decorator', function(done) {
-        generatorTest('decorator', 'foo', { dir: 'client/app/' }, function() {
-          yoAssert.file([
-            path.join('client/app/foo', 'foo.decorator.coffee')
-          ]);
-          done();
-        });
+  describe('Decorator', function() {
+    it('should generate a new decorator', function() {
+      return runGen('decorator', 'foo', {
+        prompts: {
+          dir: 'client/app/'
+        },
+        config: 'custom'
+      }).then(() => {
+        yoAssert.file([
+          path.join('client/app/foo', 'foo.decorator.ts')
+        ]);
       });
     });
+  });
 
-    describe('Provider', function() {
-      it('should generate a new provider', function(done) {
-        generatorTest('provider', 'foo', { dir: 'client/app/' }, function() {
-          yoAssert.file([
-            path.join('client/app/foo', 'foo.service.coffee'),
-            path.join('client/app/foo', 'foo.service.spec.coffee')
-          ]);
-          done();
-        });
+  describe('Provider', function() {
+    it('should generate a new provider', function() {
+      return runGen('provider', 'foo', {
+        prompts: {
+          dir: 'client/app/'
+        },
+        config: 'custom'
+      }).then(() => {
+        yoAssert.file([
+          path.join('client/app/foo', 'foo.service.ts'),
+          path.join('client/app/foo', 'foo.service.spec.ts')
+        ]);
       });
     });
+  });
 
-    describe('Component', function() {
-      it('should generate a new component', function(done) {
-        generatorTest('component', 'foo', { dir: 'app/components/' }, function() {
-          yoAssert.file([
-            path.join('app/components/foo', 'foo.component.coffee'),
-            path.join('app/components/foo', 'foo.component.spec.coffee')
-          ]);
-          done();
-        });
+  describe('Component', function() {
+    it('should generate a new component', function() {
+      return runGen('component', 'foo', {
+        prompts: {
+          dir: 'app/components/'
+        },
+        config: 'custom'
+      }).then(() => {
+        yoAssert.file([
+          path.join('app/components/foo', 'foo.component.ts'),
+          path.join('app/components/foo', 'foo.component.spec.ts')
+        ]);
       });
     });
-
   });
 });
