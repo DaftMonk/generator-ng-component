@@ -1,3 +1,32 @@
+<a name="0.3.3"></a>
+### 0.3.3 (2016-07-01)
+
+
+### Bug Fixes
+
+* Fix the `yo` check
+
+
+<a name="0.3.2"></a>
+### 0.3.2 (2016-06-30)
+
+
+### Notable Changes
+
+* Updated dependencies
+* Bumped Node version to 4.4.6
+
+
+<a name="0.3.1"></a>
+### 0.3.1 (2016-06-30)
+
+
+### Notable Changes
+
+* Routes will not default to using a new module namespace
+* The route spec `$componentController` creation has been fixed ([72ad578](https://github.com/DaftMonk/generator-ng-component/commit/72ad578))
+
+
 <a name="0.3.0"></a>
 ### 0.3.0 (2016-05-04)
 
