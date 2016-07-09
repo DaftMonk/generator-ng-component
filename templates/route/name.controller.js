@@ -15,7 +15,7 @@ angular.module('<%= scriptAppName %>')
   .component('<%= cameledName %>', {
     templateUrl: '<%= htmlUrl %>',
     controller: <%= classedName %>Component,
-    controllerAs: <%= classedName %>
+    controllerAs: '<%= classedName %>Ctrl'
   });
 
 })();
