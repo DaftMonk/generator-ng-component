@@ -1,3 +1,12 @@
+<a name="0.3.4"></a>
+### 0.3.4 (2016-07-15)
+
+
+### Bug Fixes
+
+* Fix controllerAs value to be string
+
+
 <a name="0.3.3"></a>
 ### 0.3.3 (2016-07-01)
 
