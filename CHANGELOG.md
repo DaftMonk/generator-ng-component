@@ -1,3 +1,12 @@
+<a name="0.3.5"></a>
+### 0.3.5 (2016-07-15)
+
+
+### Bug Fixes
+
+* Don't default any generator to creating a different Angular module name
+
+
 <a name="0.3.4"></a>
 ### 0.3.4 (2016-07-15)
 
