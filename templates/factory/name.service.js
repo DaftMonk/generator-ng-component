@@ -1,6 +1,7 @@
 'use strict';
+import angular from 'angular';
 
-function <%= cameledName %>Service() {
+export function <%= cameledName %>Service() {
   // Service logic
   // ...
 
@@ -8,12 +9,13 @@ function <%= cameledName %>Service() {
 
   // Public API here
   return {
-    someMethod: function () {
+    someMethod() {
       return meaningOfLife;
     }
   };
 }
 
 
-angular.module('<%= scriptAppName %>')
-  .factory('<%= cameledName %>', <%= cameledName %>Service);
+export default angular.module('<%= moduleName %>')
+  .factory('<%= cameledName %>', <%= cameledName %>Service)
+  .name;

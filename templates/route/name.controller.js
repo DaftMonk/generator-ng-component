@@ -1,21 +1,23 @@
 'use strict';
+import angular from 'angular';
 
-(function(){
-<% if(hasFilter('es6')) { %>
-class <%= classedName %>Component {
+import routes from './<%= name %>.routes';
+
+export class <%= classedName %>Component {
   constructor() {
     this.message = 'Hello';
   }
-}<% } else { %>
-function <%= classedName %>Component() {
-  this.message = 'Hello';
-}<% } %>
+}
 
-angular.module('<%= scriptAppName %>')
+export default angular.module('<%= moduleName %>')
+  .config(routes)
   .component('<%= cameledName %>', {
+    <%_ if(filters.webpack) { -%>
+    template: require('./<%=name%>.<%=templateExt%>'),
+    <%_ } else { -%>
     templateUrl: '<%= htmlUrl %>',
+    <%_ } -%>
     controller: <%= classedName %>Component,
     controllerAs: '<%= cameledName %>Ctrl'
-  });
-
-})();
+  })
+  .name;

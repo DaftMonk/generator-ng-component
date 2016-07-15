@@ -1,11 +1,13 @@
 'use strict';
+import angular from 'angular';
 
-function <%= cameledName %>Decorator($delegate) 
+export function <%= cameledName %>Decorator($delegate)
   // decorate the $delegate
   return $delegate;
 }
 
-angular.module('<%= scriptAppName %>')
-  .config(function ($provide) {
+export default angular.module('<%= moduleName %>')
+  .config(function($provide) {
     $provide.decorator('<%= cameledName %>', <%= cameledName %>Decorator);
-  });
+  })
+  .name;

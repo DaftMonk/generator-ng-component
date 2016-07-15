@@ -1,11 +1,13 @@
 'use strict';
+import angular from 'angular';
 
-function <%= cameledName %>Filter() {
-  return function (input) {
-    return '<%= cameledName %> filter: ' + input;
+export function <%= cameledName %>Filter() {
+  return function(input) {
+    return `<%= cameledName %> filter: ${input}`;
   };
 }
 
 
-angular.module('<%= scriptAppName %>')
-  .filter('<%= cameledName %>', <%= cameledName %>Filter);
+export default angular.module('<%= moduleName %>')
+  .filter('<%= cameledName %>', <%= cameledName %>Filter)
+  .name;

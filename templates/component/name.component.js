@@ -1,12 +1,16 @@
 'use strict';
+import angular from 'angular';
 
-function <%= cameledName %>Controller() 
-  this.message = 'World';
+export class <%= cameledName %>Component()
+  constructor() {
+    this.message = 'World';
+  }
 }
 
-angular.module('<%= scriptAppName %>')
+export default angular.module('<%= moduleName %>')
   .component('<%= cameledName %>', {
     template: '<h1>Hello {{ $ctrl.message }}</h1>',
     bindings: { message: '<' },
-    controller: <%= cameledName %>Controller
-});
+    controller: <%= cameledName %>Component
+  })
+  .name;

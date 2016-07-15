@@ -1,8 +1,10 @@
 'use strict';
+import angular from 'angular';
 
-function <%= cameledName %>Controller() {
+export function <%= cameledName %>Controller() {
   this.message = 'Hello';
 }
 
-angular.module('<%= scriptAppName %>')
-  .controller('<%= classedName %>Controller', <%= cameledName %>Controller);
+export default angular.module('<%= moduleName %>')
+  .controller('<%= classedName %>Controller', <%= cameledName %>Controller)
+  .name;

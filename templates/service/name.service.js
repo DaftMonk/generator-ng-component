@@ -1,8 +1,10 @@
 'use strict';
+import angular from 'angular';
 
-function <%= cameledName %>Service() {
+export function <%= cameledName %>Service() {
 	// AngularJS will instantiate a singleton by calling "new" on this function
 }
 
-angular.module('<%= scriptAppName %>')
-  .service('<%= cameledName %>', <%= cameledName %>Service);
+export default angular.module('<%= moduleName %>')
+  .service('<%= cameledName %>', <%= cameledName %>Service)
+  .name;
