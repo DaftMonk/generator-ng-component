@@ -14,11 +14,12 @@
     "Cody Mize <me@codymize.com> (http://codymize.com/)"
   ],
   "engines": {
-    "node": ">=4.4.6"
+    "node": ">=4.4.7",
+    "npm": ">=2.15.8"
   },
   "scripts": {
     "prepublish": "gulp build",
-    "test": "xo && mocha",
+    "test": "xo && gulp build && mocha",
     "xo": "xo"
   },
   "keywords": [
