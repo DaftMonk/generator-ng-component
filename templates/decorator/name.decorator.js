@@ -2,7 +2,7 @@
 const angular = require('angular');
 
 /*@ngInject*/
-export function <%= cameledName %>Decorator($delegate)
+export function <%= cameledName %>Decorator($delegate) {
   // decorate the $delegate
   return $delegate;
 }
