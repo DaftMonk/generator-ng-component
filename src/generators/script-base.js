@@ -58,7 +58,10 @@ export default function() {
   this.classedName = _.classify(this.name);
   this.kebabName = _.kebabCase(this.name);
 
-  this.hasFilter = filter => this.config.get('filters').indexOf(filter) !== -1;
+  this.filters = this.config.get('filters');
+  this.extensions = this.config.get('extensions');
+  this.hasFilter = filter => this.filters.indexOf(filter) !== -1;
+  this.hasExtension = ext => this.extensions.indexOf(ext) !== -1;
 
   this.scriptExt = this.hasExtension('ts') ? 'ts' : 'js';
   this.templateExt = this.hasExtension('jade') ? 'jade' : 'html';
