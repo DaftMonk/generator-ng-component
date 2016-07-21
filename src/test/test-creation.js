@@ -65,8 +65,8 @@ describe('with default configuration', function() {
         yoAssert.file([
           path.join('app/components/foo', 'foo.html'),
           path.join('app/components/foo', 'foo.scss'),
-          path.join('app/components/foo', 'foo.controller.js'),
-          path.join('app/components/foo', 'foo.controller.spec.js'),
+          path.join('app/components/foo', 'foo.component.js'),
+          path.join('app/components/foo', 'foo.component.spec.js'),
           path.join('app/components/foo', 'foo.js')
         ]);
       });
@@ -183,8 +183,8 @@ describe('with custom configuration', function() {
         yoAssert.file([
           path.join('client/app/foo', 'foo.jade'),
           path.join('client/app/foo', 'foo.less'),
-          path.join('client/app/foo', 'foo.controller.ts'),
-          path.join('client/app/foo', 'foo.controller.spec.ts'),
+          path.join('client/app/foo', 'foo.component.ts'),
+          path.join('client/app/foo', 'foo.component.spec.ts'),
           path.join('client/app/foo', 'foo.ts')
         ]);
       });
