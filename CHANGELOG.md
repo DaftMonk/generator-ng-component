@@ -1,3 +1,34 @@
+<a name="1.0.0"></a>
+### 1.0.0 (2016-07-21)
+
+
+### Notable Changes
+
+* Style is checked with XO
+* CoffeeScript is gone. JavaScript & TypeScript are the warring kings now.
+* A module system is assumed (Webpack supported)
+* 'ngInject' directives have been added
+* Node < 4 are unsupported
+
+
+<a name="0.3.5"></a>
+### 0.3.5 (2016-07-15)
+
+
+### Bug Fixes
+
+* Don't default any generator to creating a different Angular module name
+
+
+<a name="0.3.4"></a>
+### 0.3.4 (2016-07-15)
+
+
+### Bug Fixes
+
+* Fix controllerAs value to be string
+
+
 <a name="0.3.3"></a>
 ### 0.3.3 (2016-07-01)
 
