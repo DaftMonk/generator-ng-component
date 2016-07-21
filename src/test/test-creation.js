@@ -1,10 +1,10 @@
-/*global describe, beforeEach, it */
 'use strict';
 import path from 'path';
+import fs from 'fs';
 import helpers from 'yeoman-test';
 import yoAssert from 'yeoman-assert';
-import fs from 'fs';
 import Promise from 'bluebird';
+
 Promise.promisifyAll(fs);
 
 const TEST_DIR = __dirname;
@@ -39,7 +39,9 @@ export function runGen(genName, name, opts={}) {
     .inTmpDir(function(dir) {
       // this will create a new temporary directory for each new generator run
       var done = this.async();
-      if(DEBUG) console.log(`TEMP DIR: ${dir}`);
+      if(DEBUG) {
+        console.log(`TEMP DIR: ${dir}`);
+      }
 
       // symlink our dependency directories
       return copyAsync(path.join(TEST_DIR, `fixtures/.yo-rc.${config}.json`), path.join(dir, '.yo-rc.json'))
@@ -63,9 +65,9 @@ describe('with default configuration', function() {
         yoAssert.file([
           path.join('app/components/foo', 'foo.html'),
           path.join('app/components/foo', 'foo.scss'),
-          path.join('app/components/foo', 'foo.controller.js'),
-          path.join('app/components/foo', 'foo.controller.spec.js'),
-          path.join('app/components/foo', 'foo.js')
+          path.join('app/components/foo', 'foo.component.js'),
+          path.join('app/components/foo', 'foo.component.spec.js'),
+          path.join('app/components/foo', 'foo.routes.js')
         ]);
       });
     });
@@ -79,7 +81,7 @@ describe('with default configuration', function() {
           complex: true
         }
       }).then(() => {
-          yoAssert.file([
+        yoAssert.file([
           path.join('app/components/foo', 'foo.html'),
           path.join('app/components/foo', 'foo.scss'),
           path.join('app/components/foo', 'foo.directive.js'),
@@ -181,9 +183,9 @@ describe('with custom configuration', function() {
         yoAssert.file([
           path.join('client/app/foo', 'foo.jade'),
           path.join('client/app/foo', 'foo.less'),
-          path.join('client/app/foo', 'foo.controller.ts'),
-          path.join('client/app/foo', 'foo.controller.spec.ts'),
-          path.join('client/app/foo', 'foo.ts')
+          path.join('client/app/foo', 'foo.component.ts'),
+          path.join('client/app/foo', 'foo.component.spec.ts'),
+          path.join('client/app/foo', 'foo.routes.ts')
         ]);
       });
     });

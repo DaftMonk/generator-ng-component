@@ -1,11 +1,14 @@
 'use strict';
+const angular = require('angular');
 
-function <%= cameledName %>Filter() {
-  return function (input) {
-    return '<%= cameledName %> filter: ' + input;
+/*@ngInject*/
+export function <%= cameledName %>Filter() {
+  return function(input) {
+    return `<%= cameledName %> filter: ${input}`;
   };
 }
 
 
-angular.module('<%= scriptAppName %>')
-  .filter('<%= cameledName %>', <%= cameledName %>Filter);
+export default angular.module('<%= scriptAppName %>', [])
+  .filter('<%= cameledName %>', <%= cameledName %>Filter)
+  .name;

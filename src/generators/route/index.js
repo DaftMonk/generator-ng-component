@@ -1,15 +1,12 @@
 'use strict';
 import path from 'path';
 import {Base} from 'yeoman-generator';
-import chalk from 'chalk';
-import ngUtil from '../util';
+import {relativeUrl, copyTemplates} from '../util';
 import scriptBase from '../script-base.js';
 
 class Generator extends Base {
-  constructor(...args) {
-    super(...args);
-
-    scriptBase.call(this);
+  initializing() {
+    return scriptBase.call(this);
   }
 
   prompting() {
@@ -25,7 +22,7 @@ class Generator extends Base {
     }, {
       name: 'route',
       message: 'What will the url of your route be?',
-      default: '/' + this.name
+      default: `/${this.name}`
     }];
 
     return this.prompt(prompts).then(props => {
@@ -37,8 +34,8 @@ class Generator extends Base {
 
   writing() {
     var basePath = this.config.get('basePath') || '';
-    this.htmlUrl = ngUtil.relativeUrl(basePath, path.join(this.dir, this.name + '.html'));
-    ngUtil.copyTemplates(this, 'route');
+    this.htmlUrl = relativeUrl(basePath, path.join(this.dir, `${this.name}.${this.templateExt}`));
+    copyTemplates(this, 'route');
   }
 }
 

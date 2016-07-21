@@ -1,8 +1,11 @@
 'use strict';
+const angular = require('angular');
 
-function <%= cameledName %>Service() {
+/*@ngInject*/
+export function <%= cameledName %>Service() {
 	// AngularJS will instantiate a singleton by calling "new" on this function
 }
 
-angular.module('<%= scriptAppName %>')
-  .service('<%= cameledName %>', <%= cameledName %>Service);
+export default angular.module('<%= scriptAppName %>', [])
+  .service('<%= cameledName %>', <%= cameledName %>Service)
+  .name;

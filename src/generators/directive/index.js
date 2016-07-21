@@ -1,8 +1,7 @@
 'use strict';
 import path from 'path';
 import {Base} from 'yeoman-generator';
-import chalk from 'chalk';
-import ngUtil from '../util';
+import {relativeUrl, copyTemplates} from '../util';
 import scriptBase from '../script-base.js';
 
 class Generator extends Base {
@@ -45,8 +44,8 @@ class Generator extends Base {
     }
 
     var basePath = this.config.get('basePath') || '';
-    this.htmlUrl = ngUtil.relativeUrl(basePath, path.join(this.dir, this.name + '.html'));
-    ngUtil.copyTemplates(this, 'directive', templateDir, configName);
+    this.htmlUrl = relativeUrl(basePath, path.join(this.dir, `${this.name}.html`));
+    copyTemplates(this, 'directive', templateDir, configName);
   }
 }
 

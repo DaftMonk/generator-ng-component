@@ -1,12 +1,17 @@
 'use strict';
+const angular = require('angular');
 
-function <%= cameledName %>Controller() 
-  this.message = 'World';
+export class <%= cameledName %>Component {
+  /*@ngInject*/
+  constructor() {
+    this.message = 'World';
+  }
 }
 
-angular.module('<%= scriptAppName %>')
+export default angular.module('<%= scriptAppName %>', [])
   .component('<%= cameledName %>', {
     template: '<h1>Hello {{ $ctrl.message }}</h1>',
     bindings: { message: '<' },
-    controller: <%= cameledName %>Controller
-});
+    controller: <%= cameledName %>Component
+  })
+  .name;

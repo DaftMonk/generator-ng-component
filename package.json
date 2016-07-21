@@ -14,11 +14,13 @@
     "Cody Mize <me@codymize.com> (http://codymize.com/)"
   ],
   "engines": {
-    "node": ">=4.4.6"
+    "node": ">=4.4.7",
+    "npm": ">=2.15.8"
   },
   "scripts": {
     "prepublish": "gulp build",
-    "test": "mocha"
+    "test": "xo && gulp build && mocha",
+    "xo": "xo"
   },
   "keywords": [
     "yeoman-generator"
@@ -51,7 +53,31 @@
     "merge-stream": "^1.0.0",
     "mocha": "^2.5.3",
     "run-sequence": "^1.2.1",
+    "xo": "^0.16.0",
     "yeoman-assert": "^2.2.1",
     "yeoman-test": "^1.4.0"
+  },
+  "xo": {
+    "esnext": true,
+    "space": true,
+    "envs": ["node", "mocha"],
+    "ignores": ["templates/**/*", "generators/**/*", "test/**/*", "Gruntfile.js"],
+    "rules": {
+      "space-before-function-paren": ["error", "never"],
+      "prefer-arrow-callback": 0,
+      "keyword-spacing": ["error", { "overrides": {
+        "catch": { "after": false },
+        "if": { "after": false },
+        "for": { "after": false },
+        "while": { "after": false }
+      } }],
+      "no-var": 0,
+      "prefer-const": 0,
+      "babel/object-curly-spacing": 0,
+      "max-lines": ["error", 400],
+      "no-nested-ternary": 0,
+      "space-infix-ops": 0,
+      "no-negated-condition": 0
+    }
   }
 }

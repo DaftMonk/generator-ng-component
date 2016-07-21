@@ -1,8 +1,11 @@
 'use strict';
+const angular = require('angular');
 
-function <%= cameledName %>Controller() {
+/*@ngInject*/
+export function <%= cameledName %>Controller() {
   this.message = 'Hello';
 }
 
-angular.module('<%= scriptAppName %>')
-  .controller('<%= classedName %>Controller', <%= cameledName %>Controller);
+export default angular.module('<%= scriptAppName %>', [])
+  .controller('<%= classedName %>Controller', <%= cameledName %>Controller)
+  .name;
