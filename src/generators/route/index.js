@@ -7,14 +7,9 @@ import scriptBase from '../script-base.js';
 class Generator extends Base {
   constructor(...args) {
     super(...args);
+  }
 
-    this.scriptExt = this.filters.ts ? 'ts' : 'js';
-    this.templateExt = this.filters.jade ? 'jade' : 'html';
-    this.styleExt = this.filters.sass ? 'scss' :
-      this.filters.less ? 'less' :
-      this.filters.stylus ? 'styl' :
-      'css';
-
+  initializing() {
     return scriptBase.call(this);
   }
 
@@ -43,7 +38,7 @@ class Generator extends Base {
 
   writing() {
     var basePath = this.config.get('basePath') || '';
-    this.htmlUrl = relativeUrl(basePath, path.join(this.dir, `${this.name}.html`));
+    this.htmlUrl = relativeUrl(basePath, path.join(this.dir, `${this.name}.${this.templateExt}`));
     copyTemplates(this, 'route');
   }
 }

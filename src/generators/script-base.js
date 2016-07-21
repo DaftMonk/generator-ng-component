@@ -60,6 +60,13 @@ export default function() {
 
   this.hasFilter = filter => this.config.get('filters').indexOf(filter) !== -1;
 
+  this.scriptExt = this.hasExtension('ts') ? 'ts' : 'js';
+  this.templateExt = this.hasExtension('jade') ? 'jade' : 'html';
+  this.styleExt = this.hasExtension('sass') ? 'scss' :
+    this.hasExtension('less') ? 'less' :
+    this.hasExtension('stylus') ? 'styl' :
+    'css';
+
   // dynamic assertion statements
   this.expect = () => this.hasFilter('expect') ? 'expect(' : '';
   this.to = () => this.hasFilter('expect') ? ').to' : '.should';
