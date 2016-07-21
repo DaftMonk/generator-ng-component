@@ -67,7 +67,7 @@ describe('with default configuration', function() {
           path.join('app/components/foo', 'foo.scss'),
           path.join('app/components/foo', 'foo.component.js'),
           path.join('app/components/foo', 'foo.component.spec.js'),
-          path.join('app/components/foo', 'foo.js')
+          path.join('app/components/foo', 'foo.routes.js')
         ]);
       });
     });
@@ -185,7 +185,7 @@ describe('with custom configuration', function() {
           path.join('client/app/foo', 'foo.less'),
           path.join('client/app/foo', 'foo.component.ts'),
           path.join('client/app/foo', 'foo.component.spec.ts'),
-          path.join('client/app/foo', 'foo.ts')
+          path.join('client/app/foo', 'foo.routes.ts')
         ]);
       });
     });
