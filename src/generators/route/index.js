@@ -5,10 +5,6 @@ import {relativeUrl, copyTemplates} from '../util';
 import scriptBase from '../script-base.js';
 
 class Generator extends Base {
-  constructor(...args) {
-    super(...args);
-  }
-
   initializing() {
     return scriptBase.call(this);
   }
