@@ -1,0 +1,7 @@
+./test
+./.idea
+./src
+./.travis.yml
+./gulpfile.js
+./Gruntfile.js
+./.jshintrc
