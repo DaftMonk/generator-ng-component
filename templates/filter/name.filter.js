@@ -1,6 +1,7 @@
 'use strict';
-import angular from 'angular';
+const angular = require('angular');
 
+/*@ngInject*/
 export function <%= cameledName %>Filter() {
   return function(input) {
     return `<%= cameledName %> filter: ${input}`;
@@ -8,6 +9,6 @@ export function <%= cameledName %>Filter() {
 }
 
 
-export default angular.module('<%= moduleName %>')
+export default angular.module('<%= scriptAppName %>', [])
   .filter('<%= cameledName %>', <%= cameledName %>Filter)
   .name;

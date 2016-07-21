@@ -1,6 +1,7 @@
 'use strict';
-import angular from 'angular';
+const angular = require('angular');
 
+/*@ngInject*/
 export function <%= cameledName %>Service() {
   // Service logic
   // ...
@@ -16,6 +17,6 @@ export function <%= cameledName %>Service() {
 }
 
 
-export default angular.module('<%= moduleName %>')
+export default angular.module('<%= scriptAppName %>', [])
   .factory('<%= cameledName %>', <%= cameledName %>Service)
   .name;

@@ -1,7 +1,7 @@
 'use strict';
-import angular from 'angular';
+const angular = require('angular');
 
-export default angular.module('<%= moduleName %>')
+export default angular.module('<%= scriptAppName %>', [])
   .directive('<%= cameledName %>', function() {
     return {
       <%_ if(filters.webpack) { -%>
