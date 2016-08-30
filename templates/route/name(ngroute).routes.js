@@ -1,7 +1,7 @@
 'use strict';
 
-/*@ngInject*/
 export default function($routeProvider) {
+  'ngInject';
   $routeProvider
     .when('<%= route %>', {
       template: '<<%= kebabName %>></<%= kebabName %>>'
