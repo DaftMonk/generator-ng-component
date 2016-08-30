@@ -1,6 +1,6 @@
 {
   "name": "generator-ng-component",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Yeoman generator",
   "license": "MIT",
   "repository": "DaftMonk/generator-ng-component",
