@@ -1,7 +1,7 @@
 'use strict';
 
-/*@ngInject*/
 export default function($stateProvider) {
+  'ngInject';
   $stateProvider
     .state('<%= name %>', {
       url: '<%= route %>',
