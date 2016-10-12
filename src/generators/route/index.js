@@ -37,6 +37,15 @@ class Generator extends Base {
     this.htmlUrl = relativeUrl(basePath, path.join(this.dir, `${this.name}.${this.templateExt}`));
     copyTemplates(this, 'route');
   }
+
+  end() {
+    this.log(`
+In the parent of this component, you should now import this component and add it as a dependency:
+
+    import ${this.classedName}Component from './${this.name}/${this.name}.component';
+    ...
+    export angular.module('myParentModule', [${this.classedName}Component]);`);
+  }
 }
 
 module.exports = Generator;
