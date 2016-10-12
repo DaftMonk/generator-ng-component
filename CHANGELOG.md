@@ -1,3 +1,25 @@
+<a name="1.0.3"></a>
+### 1.0.3 (2016-10-10)
+
+
+* feat(gen:route): add instructions for using route after generated ([174e46c](https://github.com/DaftMonk/generator-ng-component/commit/174e46c))
+
+
+<a name="1.0.2"></a>
+### 1.0.2 (2016-08-30)
+
+
+* fix(route:uirouter): use string version of ngInject directive ([007182e](https://github.com/DaftMonk/generator-ng-component/commit/007182e))
+* fix(route:ngroute): use string version of ngInject directive ([abbe12b](https://github.com/DaftMonk/generator-ng-component/commit/abbe12b))
+
+
+<a name="1.0.1"></a>
+### 1.0.1 (2016-07-21)
+
+
+* chore(npm): add .npmignore
+
+
 <a name="1.0.0"></a>
 ### 1.0.0 (2016-07-21)
 
