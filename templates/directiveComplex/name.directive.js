@@ -4,7 +4,7 @@ const angular = require('angular');
 export default angular.module('<%= scriptAppName %>', [])
   .directive('<%= cameledName %>', function() {
     return {
-      <%_ if(filters.indexOf('webpack') > -1) { -%>
+      <%_ if(hasFilter('webpack')) { -%>
       template: require('./<%=name%>.<%=templateExt%>'),
       <%_ } else { -%>
       templateUrl: '<%= htmlUrl %>',
