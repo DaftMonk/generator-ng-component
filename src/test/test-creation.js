@@ -5,7 +5,7 @@ import helpers from 'yeoman-test';
 import yoAssert from 'yeoman-assert';
 import Promise from 'bluebird';
 
-Promise.promisifyAll(fs);
+Promise.promisifyAll(fs); // eslint-disable-line no-use-extend-native/no-use-extend-native
 
 const TEST_DIR = __dirname;
 const DEBUG = process.env.DEBUG || false;
