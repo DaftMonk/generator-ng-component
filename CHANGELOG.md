@@ -1,3 +1,10 @@
+<a name="1.0.4"></a>
+### 1.0.4 (2016-10-17)
+
+
+* fix(directive): fix template definition for webpack ([af08634](https://github.com/DaftMonk/generator-ng-component/commit/af08634))
+
+
 <a name="1.0.3"></a>
 ### 1.0.3 (2016-10-10)
 
