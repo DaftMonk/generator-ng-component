@@ -181,7 +181,7 @@ describe('with custom configuration', function() {
         config: 'custom'
       }).then(() => {
         yoAssert.file([
-          path.join('client/app/foo', 'foo.jade'),
+          path.join('client/app/foo', 'foo.pug'),
           path.join('client/app/foo', 'foo.less'),
           path.join('client/app/foo', 'foo.component.ts'),
           path.join('client/app/foo', 'foo.component.spec.ts'),
@@ -201,7 +201,7 @@ describe('with custom configuration', function() {
         config: 'custom'
       }).then(() => {
         yoAssert.file([
-          path.join('client/app/foo', 'foo.jade'),
+          path.join('client/app/foo', 'foo.pug'),
           path.join('client/app/foo', 'foo.less'),
           path.join('client/app/foo', 'foo.directive.ts'),
           path.join('client/app/foo', 'foo.directive.ts')
@@ -223,7 +223,7 @@ describe('with custom configuration', function() {
         ]);
         yoAssert.noFile([
           path.join('client/app/foo', 'foo.less'),
-          path.join('client/app/foo', 'foo.jade')
+          path.join('client/app/foo', 'foo.pug')
         ]);
       });
     });
