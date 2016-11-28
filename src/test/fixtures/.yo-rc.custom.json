@@ -12,7 +12,7 @@
     "extensions": [
       "js",
       "ts",
-      "jade",
+      "pug",
       "less"
     ],
     "basePath": "app"

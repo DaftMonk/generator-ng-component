@@ -64,7 +64,7 @@ export default function() {
   this.hasExtension = ext => this.extensions.indexOf(ext) !== -1;
 
   this.scriptExt = this.hasExtension('ts') ? 'ts' : 'js';
-  this.templateExt = this.hasExtension('jade') ? 'jade' : 'html';
+  this.templateExt = this.hasExtension('pug') ? 'pug' : 'html';
   this.styleExt = this.hasExtension('sass') ? 'scss' :
     this.hasExtension('less') ? 'less' :
     this.hasExtension('stylus') ? 'styl' :
