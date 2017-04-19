@@ -1,5 +1,7 @@
 'use strict';
 
+import <%= cameledName %> from './<%= cameledName %>.component';
+
 describe('Component: <%= cameledName %>', function() {
   // load the component's module
   beforeEach(module('<%= scriptAppName %>'));

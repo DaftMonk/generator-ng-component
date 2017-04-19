@@ -1,5 +1,7 @@
 'use strict';
 
+import <%= classedName %> from './<%= classedName %>.component';
+
 describe('Component: <%= classedName %>Component', function() {
   // load the controller's module
   beforeEach(module('<%= scriptAppName %>'));
